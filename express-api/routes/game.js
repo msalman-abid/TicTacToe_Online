@@ -8,6 +8,10 @@ let X_is_next = true;
 router.get('/', function(req, res, next) {
   res.send('API is working properly!');
 });
+router.get('/clear', function(req, res, next) {
+  game_arr = Array(9).fill(null);
+  res.send('API is working properly!');
+});
 
 router.put('/', function(req, res, next) {
     console.log(req.body)

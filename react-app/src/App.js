@@ -65,17 +65,23 @@ function Square(props) {
   
     render() {
       const winner = calculateWinner(this.state.squares);
-      console.log(winner);
-      let status;
+      let status, draw;
       if (winner) {
         status = 'Winner: ' + winner;
-      } else {
+      }
+      else if(checkDraw(this.state.squares))
+      {
+        status = 'Draw';
+        draw= true;
+      } 
+      else {
         status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
       }
 
-      return (
+      let status_class = winner? "status_winner":draw?"status_draw":"status";
+      return ( 
         <div>
-          <div className="status">
+          <div className={status_class}>
             {status}
           </div>
 
@@ -127,9 +133,9 @@ function Square(props) {
   }
   
   callAPI() {
-      fetch("http://localhost:9000/testAPI")
+      fetch("http://localhost:9000/game/clear")
           .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }));
+          .then(res => this.setState({ apiResponse: "Board Reset!" }));
   }
   
   componentWillMount() {
@@ -178,6 +184,14 @@ function Square(props) {
     return null;
   }
 
+  function checkDraw(squares) {
+    for (let i = 0; i < squares.length; i++) {
+      if(squares[i] == null){
+        return false;
+      }
+    }
+    return true; 
+  }
   function clearBoard()
   {
     let temp;
