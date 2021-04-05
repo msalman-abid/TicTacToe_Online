@@ -1,0 +1,27 @@
+.parent {
+    margin:auto;
+    height: 400px;
+    width: 400px;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:white;
+}   
+.child {
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.btn {
+    background-color: white;
+    padding: 20px 70px;
+    margin-bottom: 20px;
+    font-size: larger;
+    width: 300px;
+}
+.btn:active {
+    background-color: gray;
+}
