@@ -75,22 +75,46 @@ function Square(props) {
 
       return (
         <div>
-          <div className="status">{status}</div>
-          <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
+          <div className="status">
+            {status}
           </div>
-          <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
+
+          <div class="row border-b">
+            <div class="col border-r">
+              {this.renderSquare(0)}
+            </div>
+            <div class="col border-r">
+              {this.renderSquare(1)}
+            </div>
+            <div class="col">
+              {this.renderSquare(2)}
+            </div>
           </div>
-          <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
+
+          <div class="row border-b">
+            <div class="col border-r">
+              {this.renderSquare(3)}
+            </div>
+            <div class="col border-r">
+              {this.renderSquare(4)}
+            </div>
+            <div class="col">
+              {this.renderSquare(5)}
+            </div>
           </div>
+
+          <div class="row">
+            <div class="col border-r">
+              {this.renderSquare(6)}
+            </div>
+            <div class="col border-r">
+              {this.renderSquare(7)}
+            </div>
+            <div class="col">
+              {this.renderSquare(8)}
+            </div>
+          </div>
+        
         </div>
       );
     }
@@ -114,15 +138,21 @@ function Square(props) {
     
     render() {
       return (
-        <div className="game">
-          <div className="game-board">
+        <div>
+
+          <div className="btn">
+            Abandon   
+          </div>
+
+          <div className="game">
             <Board />
           </div>
-          <div className="game-info">
-            <div>{/* status */}</div>
+
+          {/* <div className="game">
+
             <p className="App-intro">"Test: " + {this.state.apiResponse}</p>
-            <ol>{/* TODO */}</ol>
-          </div>
+            <ol>{/* TODO </ol></div> */}
+          
         </div>
       );
     }
