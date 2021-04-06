@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 // import Routes from './Routes';
+import LinkButton from './LinkButton'
 
-import './index_page.css';
+import './main_page.css';
 
 
 class Page extends React.Component
@@ -12,7 +13,7 @@ class Page extends React.Component
   {
     return (
         <div class="parent">
-            <button class="child btn">Play Offline</button>
+            <LinkButton class ="child btn" to='/game'>Play Offline</LinkButton>
 
             <button class="child btn">Log In</button>
         </div>

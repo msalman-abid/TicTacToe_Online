@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 let game_arr = Array(9).fill(null);
-let X_is_next = true;
 
 /* Game Request */
 router.get('/', function(req, res, next) {
@@ -21,9 +20,10 @@ router.put('/', function(req, res, next) {
 
     if (!game_arr[m_idx])
     {
-        game_arr[m_idx] = m_symbol;
+      game_arr[m_idx] = m_symbol;
     }
-    console.log(game_arr);
+
+      // console.log(m_valid_move);
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.json({data: game_arr });
