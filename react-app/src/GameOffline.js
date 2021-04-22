@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './Game.css';
+// import LinkButton from './LinkButton'
 import Button from '@material-ui/core/Button';
 import Confetti from 'react-confetti'
 // import useWindowSize from 'react-use-window-size'
-import socketClient  from "socket.io-client";
+
 
 
 function Square(props) {
-    return (
-      <button className="square" onClick={props.onClick}>
+  var color1= "orange";
+  if (props.value === 'X')
+  {
+    color1="lightgreen";
+  }
+  return (
+      <button className="square" onClick={props.onClick} style={{color:color1}}>
         {props.value}
       </button>
     );
@@ -22,41 +28,46 @@ function Square(props) {
         squares: Array(9).fill(null),
         xIsNext: true,
         winner: false,
-        socket: this.props.socket,
-        symbol: 'X',
-        myTurn: null,
       };
     }
     
     handleClick(i) {
-      if (!this.state.myTurn) {
-        return;
-      }
-      
       let squares = this.state.squares.slice();
       // if(calculateWinner(squares) || squares[i]) {
       //   return;
       // }
-      // let val = this.state.xIsNext ? 'X' : 'O';
 
-      var m_sym = null;
-      if (calculateWinner(squares) || squares[i]) {
-        return;
-      }
+        let next_val;
+    //   let squares ;
+      let val = this.state.xIsNext ? 'X' : 'O';
 
-      this.state.socket.emit("make.move", { // Valid move (on client side) -> emit to server
-        symbol: this.state.symbol,
-        position: i
-        });
-
-
-      this.setState({
-        squares: squares,
-        // xIsNext: !this.state.xIsNext,
+      fetch('http://localhost:9000/game', {
+      method: 'PUT',
+      headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+      idx: i,
+      symbol: val
       })
-      if (calculateWinner(squares)) {
-        this.props.setWinner();
-      }
+
+      }).then((res) => {
+        return res.json();
+      }).then( (res) => {
+          if(calculateWinner(squares) || squares[i]) {
+              return;
+            }
+            squares = res.data
+        this.setState({
+          squares: squares,
+          xIsNext: !this.state.xIsNext,
+        })
+        if(calculateWinner(squares)){
+          this.props.setWinner();
+        }
+      } );
+
 
     }
 
@@ -68,40 +79,6 @@ function Square(props) {
     }
 
 
-    componentDidMount() {
-      const socket = this.state.socket;
-
-      socket.on("game.begin", (data) => {
-
-        this.setState({
-          symbol: data.symbol, // The server is assigning the symbol
-          myTurn: data.symbol === "X", // 'X' starts first
-        })
-      })
-
-        //Bind event on players move
-        socket.on("move.made", (data) => {
-          let squares = this.state.squares.slice();
-          squares[data.position] = (data.symbol); // Render move
-
-          // If the symbol of the last move was the same as the current player
-          // means that now is opponent's turn
-          this.setState({
-            myTurn: data.symbol !== this.state.symbol,
-            squares: squares,
-          })
-
-        })
-      
-  }
-
-
-  componentWillUnmount() {
-    const socket = this.state.socket;
-    socket.off("game.begin");
-    socket.off("move.made");
-
-   }
   
     render() {
       const winner = calculateWinner(this.state.squares);
@@ -116,7 +93,7 @@ function Square(props) {
         draw= true;
       } 
       else {
-        status = 'Player: ' + (this.state.symbol);
+        status = 'Player: ' + (this.state.xIsNext ? 'X' : 'O');
       }
 
       let status_class = winner? "status_winner":draw?"status_draw":"status";
@@ -166,14 +143,12 @@ function Square(props) {
     }
   }
   
-  class Game extends React.Component {
+  class GameOffline extends React.Component {
     constructor(props) {
       super(props);
       this.state = { 
       apiResponse: "", 
-      gameWinner: false,
-      socket: socketClient("http://localhost:9000"),
-    };
+      gameWinner: false };
  
   }
   
@@ -189,9 +164,8 @@ function Square(props) {
       }
   }
 
-  componentDidMount() {
-      // this.callAPI();
-      
+  componentWillMount() {
+      this.callAPI();
   }
 
     boardSetWinner=()=>{
@@ -205,7 +179,7 @@ function Square(props) {
           <Button variant="contained" color="default" size='large' href="/">Abandon</Button>
 
           <div className="game">
-            <Board setWinner={this.boardSetWinner} socket ={this.state.socket}/>
+            <Board setWinner={this.boardSetWinner}/>
           </div>
 
           {/* <div className="game">
@@ -252,4 +226,4 @@ function Square(props) {
     fetch('http://localhost:9000/game');
   }
 
-export default Game;
+export default GameOffline;

@@ -19,6 +19,8 @@ class Page extends React.Component
             {/* <LinkButton class ="child btn" to='/game'>Play Offline</LinkButton> */}
             <Button variant="contained" color="default" size='large' href="/game">Play Offline</Button>
             <br/>
+            <Button variant="contained" color="default" size='large' href="/game_online">Play Online</Button>
+            <br/>
             <Button variant="contained" color="default" size='large' href="/login">Log In</Button>
             {/* <LinkButton class ="child btn" to='/login'>Log In</LinkButton> */}
         </div>
