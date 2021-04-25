@@ -4,7 +4,7 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 // import Routes from './Routes';
 // import LinkButton from './LinkButton'
 import Button from '@material-ui/core/Button';
-
+import tto from './tto.png';
 import './main_page.css';
 
 
@@ -15,6 +15,7 @@ class Page extends React.Component
     return (
       
         <div class="parent">
+          <img src={tto} alt={"Tic Tac Toe Image"}/>
           <h1>TIC TAC TOE ONLINE</h1>
             {/* <LinkButton class ="child btn" to='/game'>Play Offline</LinkButton> */}
             <Button variant="contained" color="default" size='large' href="/game">Play Offline</Button>
