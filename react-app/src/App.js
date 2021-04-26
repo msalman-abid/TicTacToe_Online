@@ -3,7 +3,7 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 import Page from './main_page'
 import Login from './login_page'
-import Signup from './old_signup_page'
+import SignUp from './signup_page'
 import GameOffline from './GameOffline';
 import GameOnline from './GameOnline';
 import useToken from './useToken';
@@ -36,7 +36,7 @@ function App() {
             <Login setToken={setToken}/>
           </Route>
           <Route path="/signup">
-            <Signup />
+            <SignUp />
           </Route>
           <Route path="/">
             <Page />
