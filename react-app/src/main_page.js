@@ -30,7 +30,7 @@ export default function Page()
   return (
 
     <Container component="main" maxWidth="xs" justify="center" verticalAlign= "center">
-      <CssBaseline />
+      <CssBaseline justify="center"/>
       {/* <img src={tto} alt={"Tic Tac Toe Image"}/> */}
       <Typography component="h1" variant="h5" align="center">
       TIC TAC TOE ONLINE
