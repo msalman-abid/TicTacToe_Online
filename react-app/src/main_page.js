@@ -1,13 +1,11 @@
 import React from 'react';
 
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-
+import background from "./bkg.png";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -16,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     verticalAlign: 'middle'
-
   },
   btn: {
     margin: theme.spacing(3, 0, 2),
@@ -28,54 +25,50 @@ export default function Page()
   const classes = useStyles();
 
   return (
+      <Container component="main" maxWidth="xs" style={{ backgroundImage: `url(${background})`, backgroundRepeat: 'no-repeat', backgroundPosition: "center", backgroundSize: "contain",position: 'absolute', 
+      left: '50%', 
+      top: '50%',
+      transform: 'translate(-50%, -50%)'}}>
 
-    <Container component="main" maxWidth="xs" justify="center" verticalAlign= "center">
-      <CssBaseline justify="center"/>
-      {/* <img src={tto} alt={"Tic Tac Toe Image"}/> */}
-      <Typography component="h1" variant="h5" align="center">
-      TIC TAC TOE ONLINE
-      </Typography>
-      
-      <div className={classes.paper}>
-          <Grid
-          container
-          justify= "center"
-          >
-            <Button
-            type="submit"
+        <Typography component="h1" variant="h5" align="center">
+        TIC TAC TOE ONLINE
+        </Typography>
+        
+        <div className={classes.paper}>
+              <Button
               fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.btn}
-              href="/game"
-            >
-              Play Offline
-            </Button>
+              type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.btn}
+                href="/game"
+              >
+                Play Offline
+              </Button>
 
-            <Button
-            type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.btn}
-              href="/game_online"
-            >
-              Play Online
-            </Button>
+              <Button
+              type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.btn}
+                href="/game_online"
+              >
+                Play Online
+              </Button>
 
-            <Button
-            type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.btn}
-              href="/login"
-            >
-              Log In
-            </Button>
-          </Grid>
+              <Button
+              type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.btn}
+                href="/login"
+              >
+                Log In
+              </Button>
 
-      </div>
-    </Container>
+        </div>
+      </Container>
   );
 }

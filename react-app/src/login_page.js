@@ -2,7 +2,6 @@ import React from 'react';
 import {useState}  from "react";
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -73,11 +72,14 @@ export default function LogIn({setToken}) {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Container component="main" maxWidth="xs" style={{ position: 'absolute', 
+    left: '50%', 
+    top: '50%',
+    transform: 'translate(-50%, -50%)'}}>
       <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
+            color="white"
             variant="outlined"
             margin="normal"
             required
