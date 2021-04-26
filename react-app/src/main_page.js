@@ -1,32 +1,81 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-// import Routes from './Routes';
-// import LinkButton from './LinkButton'
+
 import Button from '@material-ui/core/Button';
-import tto from './tto.png';
-import './main_page.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 
-class Page extends React.Component
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    verticalAlign: 'middle'
+
+  },
+  btn: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export default function Page()
 {
-  render()
-  {
-    return (
-      
-        <div class="parent">
-          {/* <img src={tto} alt={"Tic Tac Toe Image"}/> */}
-          <h1>TIC TAC TOE ONLINE</h1>
-            {/* <LinkButton class ="child btn" to='/game'>Play Offline</LinkButton> */}
-            <Button variant="contained" color="default" size='large' href="/game">Play Offline</Button>
-            <br/>
-            <Button variant="contained" color="default" size='large' href="/game_online">Play Online</Button>
-            <br/>
-            <Button variant="contained" color="default" size='large' href="/login">Log In</Button>
-            {/* <LinkButton class ="child btn" to='/login'>Log In</LinkButton> */}
-        </div>
-    );
-  }
-}
+  const classes = useStyles();
 
-export default Page;
+  return (
+
+    <Container component="main" maxWidth="xs" justify="center" verticalAlign= "center">
+      <CssBaseline />
+      {/* <img src={tto} alt={"Tic Tac Toe Image"}/> */}
+      <Typography component="h1" variant="h5" align="center">
+      TIC TAC TOE ONLINE
+      </Typography>
+      
+      <div className={classes.paper}>
+          <Grid
+          container
+          justify= "center"
+          >
+            <Button
+            type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.btn}
+              href="/game"
+            >
+              Play Offline
+            </Button>
+
+            <Button
+            type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.btn}
+              href="/game_online"
+            >
+              Play Online
+            </Button>
+
+            <Button
+            type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.btn}
+              href="/login"
+            >
+              Log In
+            </Button>
+          </Grid>
+
+      </div>
+    </Container>
+  );
+}
