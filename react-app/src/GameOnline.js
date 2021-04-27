@@ -261,10 +261,6 @@ function Square(props) {
     }
     return true; 
   }
-  function clearBoard()
-  {
-    let temp;
-    fetch('http://localhost:9000/game');
-  }
+
 
 export default GameOnline;

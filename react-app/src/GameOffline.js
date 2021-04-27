@@ -33,40 +33,19 @@ function Square(props) {
     
     handleClick(i) {
       let squares = this.state.squares.slice();
-      // if(calculateWinner(squares) || squares[i]) {
-      //   return;
-      // }
-
-        let next_val;
-    //   let squares ;
       let val = this.state.xIsNext ? 'X' : 'O';
 
-      fetch('http://localhost:9000/game', {
-      method: 'PUT',
-      headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-      idx: i,
-      symbol: val
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
+      squares[i] = val;
+      this.setState({
+        squares: squares,
+        xIsNext: !this.state.xIsNext,
       })
-
-      }).then((res) => {
-        return res.json();
-      }).then( (res) => {
-          if(calculateWinner(squares) || squares[i]) {
-              return;
-            }
-            squares = res.data
-        this.setState({
-          squares: squares,
-          xIsNext: !this.state.xIsNext,
-        })
-        if(calculateWinner(squares)){
-          this.props.setWinner();
-        }
-      } );
+      if (calculateWinner(squares)) {
+        this.props.setWinner();
+      }
 
 
     }
