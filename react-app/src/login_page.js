@@ -1,14 +1,17 @@
 import React from 'react';
 import {useState}  from "react";
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import {
+  Grid,
+  Link,
+  Container,
+  Checkbox,
+  FormControlLabel,
+  TextField,
+  Button,
+  Box,
+  makeStyles
+} from '@material-ui/core';
 
 
 
@@ -72,10 +75,17 @@ export default function LogIn({setToken}) {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs" style={{ position: 'absolute', 
-    left: '50%', 
-    top: '50%',
-    transform: 'translate(-50%, -50%)'}}>
+    <Box
+    sx={{
+        backgroundColor: 'background.default',
+        minHeight: '100%',
+        py: 3
+      }}
+    >
+    <Button>
+      Main Page
+    </Button>
+    <Container maxWidth="xs">
       <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
@@ -135,6 +145,7 @@ export default function LogIn({setToken}) {
         </form>
       </div>
     </Container>
+    </Box>
   );
 }
 
