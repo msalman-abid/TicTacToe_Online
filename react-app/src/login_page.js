@@ -62,8 +62,6 @@ export default function LogIn({setToken}) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log("Testing");
-    console.log("handling submit");
     const token = await loginUser({
       username,
       password

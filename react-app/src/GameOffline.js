@@ -47,7 +47,6 @@ function Square(props) {
         this.props.setWinner();
       }
 
-
     }
 
     renderSquare(i) {

@@ -1,5 +1,8 @@
 import React from 'react';
 import {useState}  from "react";
+import PropTypes from 'prop-types';
+
+
 import {
   Button,
   Box,
@@ -27,17 +30,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp( {setToken} ) {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
   
+    async function signupUser(credentials) {
+      return fetch('http://localhost:9000/login/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({credentials
+        })
+      }).then(data => data.json())
+    }
+
     function validateForm() {
-      return email.length > 0 && password.length > 0 && username.length >0;
+      return password.length > 0 && username.length >0;
+      // return email.length > 0 && password.length > 0 && username.length >0;
     }
   
-    function handleSubmit(event) {
-      event.preventDefault();
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const token = await signupUser({
+        username,
+        password
+      });
+      setToken(token);
     }
 
   const classes = useStyles();
@@ -74,7 +94,7 @@ export default function SignUp() {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -87,7 +107,7 @@ export default function SignUp() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -125,4 +145,8 @@ export default function SignUp() {
     </Container>
     </Box>
   );
+}
+
+SignUp.propTypes = {
+  setToken: PropTypes.func.isRequired
 }
