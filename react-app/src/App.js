@@ -7,6 +7,8 @@ import SignUp from './signup_page'
 import GameOffline from './GameOffline';
 import GameOnline from './GameOnline';
 import useToken from './useToken';
+import LatestOrders from './leader_board_page'
+import Account from './profile_page'
 
 
 function App() {
@@ -32,11 +34,17 @@ function App() {
           <Route path="/game_online">
             {accessOnlineGame}
           </Route>
+          <Route path="/profile">
+            <Account/>
+          </Route>
           <Route path="/login">
             <Login setToken={setToken}/>
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/leaderboard">
+            <LatestOrders/>
           </Route>
           <Route path="/">
             <Page />

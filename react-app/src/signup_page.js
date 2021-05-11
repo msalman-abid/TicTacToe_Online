@@ -71,9 +71,7 @@ export default function SignUp( {setToken} ) {
     }}
     >
   
-    <Button>
-      Main Page
-    </Button>
+    <Button  variant="contained" color="default" size='large' href="/"> Main Page</Button>
     
     <Container maxWidth="xs">
       <div className={classes.paper}>
@@ -132,10 +130,10 @@ export default function SignUp( {setToken} ) {
             disabled={!validateForm()}
           >
             Sign Up
-          </Button>
+          </Button >
           <Grid container justify="flex-start">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

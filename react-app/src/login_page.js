@@ -80,9 +80,7 @@ export default function LogIn({setToken}) {
         py: 3
       }}
     >
-    <Button>
-      Main Page
-    </Button>
+    <Button  variant="contained" color="default" size='large' href="/"> Main Page </Button>
     <Container maxWidth="xs">
       <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -129,13 +127,13 @@ export default function LogIn({setToken}) {
             Log In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
