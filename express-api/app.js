@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-var mysql = require('mysql')
+var mysql = require('mysql2')
 const socketIo = require('socket.io');
 
 
