@@ -11,8 +11,6 @@ import Profile from './profile_page'
 import Leaderboard from './leader_board_page'
 import LogedinMain from './loggedin_main_page'
 
-
-
 function App() {
   
   var accessOnlineGame;
@@ -22,6 +20,7 @@ function App() {
     accessOnlineGame = <Login setToken={setToken} />
   }
   else{
+    // console.log(token);
     accessOnlineGame = <GameOnline />
   }
 
@@ -29,7 +28,7 @@ function App() {
     <div className="wrapper">
       <BrowserRouter>
         <Switch>
-          <Route path="/profile">
+        <Route path="/profile">
             <Profile />
           </Route>
           <Route path="/leaderboard">
@@ -44,11 +43,17 @@ function App() {
           <Route path="/game_online">
             {accessOnlineGame}
           </Route>
+          <Route path="/profile">
+            <Account/>
+          </Route>
           <Route path="/login">
             <Login setToken={setToken}/>
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/leaderboard">
+            <LatestOrders/>
           </Route>
           <Route path="/">
             <Page />
