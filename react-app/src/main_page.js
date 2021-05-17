@@ -45,13 +45,13 @@ export default function Page()
       >
 
       <Container>
-        <Typography variant="h1" align="center">
+        <Typography variant="h5" align="center">
         TIC TAC TOE ONLINE
         </Typography>
         
         <div className={classes.paper}>
               <Button
-              style={{width:'200px'}}
+              fullWidth
               type="submit"
                 variant="contained"
                 color="primary"
@@ -63,7 +63,7 @@ export default function Page()
 
               <Button
               type="submit"
-              style={{width:'200px'}}
+                fullWidth
                 variant="contained"
                 color="primary"
                 className={classes.btn}
@@ -74,13 +74,13 @@ export default function Page()
 
               <Button
               type="submit"
-              style={{width:'200px'}}
+                fullWidth
                 variant="contained"
                 color="primary"
                 className={classes.btn}
                 href="/login"
               >
-                Log In Test
+                Log In
               </Button>
 
         </div>

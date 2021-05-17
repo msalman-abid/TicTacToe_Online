@@ -154,7 +154,7 @@ function Square(props) {
       return (
         <div>
           {this.renderConfetti()}
-          <Button href="/">Abandon</Button>
+          <Button variant="contained" color="default" size='large' href="/">Abandon</Button>
 
           <div className="game">
             <Board setWinner={this.boardSetWinner}/>

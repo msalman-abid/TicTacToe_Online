@@ -80,7 +80,7 @@ export default function LogIn({setToken}) {
         py: 3
       }}
     >
-    <Button href="/"> Main Page </Button>
+    <Button  variant="contained" color="default" size='large' href="/"> Main Page </Button>
     <Container maxWidth="xs">
       <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>

@@ -71,7 +71,7 @@ export default function SignUp( {setToken} ) {
     }}
     >
   
-    <Button href="/"> Main Page</Button>
+    <Button  variant="contained" color="default" size='large' href="/"> Main Page</Button>
     
     <Container maxWidth="xs">
       <div className={classes.paper}>
