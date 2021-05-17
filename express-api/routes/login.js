@@ -6,7 +6,7 @@ var router = express.Router();
 
 function insertUser(pool, data) {
 
-    let insertQuery = 'INSERT INTO ?? (??,??,??,??,??) VALUES (?,?,?,?,?)';
+    let insertQuery = "INSERT INTO ?? (??,??,??,??,??) VALUES (?,?,?,?,?)";
     let query = mysql.format(insertQuery, ["users", "email", "password", "won", "lost",
         "draw", data.username, data.password,0, 0, 0]);
 
@@ -16,31 +16,9 @@ function insertUser(pool, data) {
             return;
         }
         // rows added
-        console.log(rows.insertId);
+        console.log(query);
     })
 }
-
-function getUser(pool, data) {
-
-    let insertQuery = 'SELECT * FROM ?? WHERE ?? = ?? AND ?? = ??';
-    let query = mysql.format(insertQuery, ["users", "email", data.username, "password", data.password]);
-
-    pool.query(query, (err, rows) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        // Login Sucessful
-        console.log("Rows");
-        console.log(rows);
-        // console.log("Query");
-        // console.log(query)
-        res.send(rows);
-        // res.json(rows);
-        // return rows;
-    })
-}
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -71,50 +49,29 @@ router.post('/signup', function(req, res, next) {
     
 });
 
-router.post('/login', function(req, res, next) {
-    console.log("Hello");
-    var pool = req.app.get("pool");
-    
-    // console.log(req.body);
-    data = req.body.credentials;
-    
-    setTimeout(() => {
-        getUser(pool, data);
-    },500);
-    
-    console.log("Result");
-    console.log(res);
-    res.send({
-        token:{
-            username: data.username
-            // won: ,
-            // lost: ,
-            // draw: 
-        }
-    })
-    
-});
-
-
 router.post('/', function(req, res, next) {
-
-    var m_var = false;
-
-    console.log(req.body);
-    credentials = req.body.credentials;
-    if(credentials.username === "123")
-    {
-        if (credentials.password === "owl" ) {
-            m_var = true;
+    var pool = req.app.get("pool");
+    data = req.body.credentials;
+    // console.log(data.username);
+    let insertQuery = "SELECT * FROM users WHERE email like '"+ data.username+"'"+ "AND password like '"+data.password+"'";
+    let query = insertQuery;
+    pool.query(query, (err, rows) => {
+        if (err) {
+            console.error(err);
+            return;
         }
-    }
-
-    if (m_var) {
+        // Login Sucessful
+        console.log(rows[0]);
         
         res.send({
-            token:'test123'
+            token:{
+                username: data.username,
+                won: rows[0].won,
+                lost: rows[0].lost,
+                draw: rows[0].draw
+            }
         })
-    }
-    
+    })
 });
+
 module.exports = router;

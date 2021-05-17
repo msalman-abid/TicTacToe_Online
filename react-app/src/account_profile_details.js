@@ -15,17 +15,8 @@ import SportsEsportsOutlinedIcon from '@material-ui/icons/SportsEsportsOutlined'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import EmojiFlagsOutlinedIcon from '@material-ui/icons/EmojiFlagsOutlined';
 
-export default function AccountProfileDetails()
+export default function AccountProfileDetails({m_token})
 {
-
-  // const [values, setValues] = useState({
-  //   firstName: 'Katarina',
-  //   lastName: 'Smith',
-  //   email: 'demo@devias.io',
-  //   phone: '',
-  //   state: 'Alabama',
-  //   country: 'USA'
-  // });
 
 
   return (
@@ -62,9 +53,9 @@ export default function AccountProfileDetails()
               <Typography
                 color="textPrimary"
                 gutterBottom
-                variant="h7"
+                variant="h6"
               >
-                Games Played
+                {parseInt(m_token.won) + parseInt(m_token.draw) + parseInt(m_token.lost)}
               </Typography>
               </TableCell>
 
@@ -99,9 +90,9 @@ export default function AccountProfileDetails()
                   <Typography
                     color="textPrimary"
                     gutterBottom
-                    variant="h7"
+                    variant="h6"
                   >
-                    Games Won
+                    {parseInt(m_token.won)}
                   </Typography>
                 </TableCell>
                 </TableRow>
@@ -130,9 +121,9 @@ export default function AccountProfileDetails()
                   <Typography
                     color="textPrimary"
                     gutterBottom
-                    variant="h7"
+                    variant="h6"
                   >
-                    Games Lost
+                    {parseInt(m_token.lost)}
                   </Typography>
                 </TableCell>
                 </TableRow>
@@ -160,9 +151,9 @@ export default function AccountProfileDetails()
                   <Typography
                     color="textPrimary"
                     gutterBottom
-                    variant="h7"
+                    variant="h6"
                   >
-                    Games Tied
+                    {parseInt(m_token.draw)}
                   </Typography>
                 </TableCell>
                 </TableRow>

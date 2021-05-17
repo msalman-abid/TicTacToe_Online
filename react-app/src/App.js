@@ -13,15 +13,20 @@ import Account from './profile_page'
 
 function App() {
   
-  var accessOnlineGame;
+  var accessOnlineGame, loggedIn;
   const { token, setToken } = useToken();
 
   if(!token) {
+    loggedIn = false;
     accessOnlineGame = <Login setToken={setToken} />
+    // accessProfile = <Account setToken={setToken} />
+
   }
   else{
     // console.log(token);
-    accessOnlineGame = <GameOnline />
+    loggedIn = true;
+    accessOnlineGame = <GameOnline m_token={token} />
+    // accessProfile = <
   }
 
   return (
@@ -35,19 +40,19 @@ function App() {
             {accessOnlineGame}
           </Route>
           <Route path="/profile">
-            <Account/>
+            <Account m_token={token}/>
           </Route>
           <Route path="/login">
             <Login setToken={setToken}/>
           </Route>
           <Route path="/signup">
-            <SignUp />
+            <SignUp setToken={setToken} />
           </Route>
           <Route path="/leaderboard">
             <LatestOrders/>
           </Route>
           <Route path="/">
-            <Page />
+            <Page status={loggedIn}/>
           </Route>
         </Switch>
       </BrowserRouter>

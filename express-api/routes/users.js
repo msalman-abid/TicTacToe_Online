@@ -8,17 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 
- function getLeaderboard(pool, query) {
-  return new Promise((resolve, reject) => {
-  pool.query(query, (err, rows) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-  })
-})
-}
-
 router.get('/leaderboard',  function (req, res) {
   var pool = req.app.get("pool");
   

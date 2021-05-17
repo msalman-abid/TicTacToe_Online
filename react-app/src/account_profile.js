@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function AccountProfile() {
+export default function AccountProfile({m_token}) {
 
   const classes = useStyles();
 
@@ -68,7 +68,7 @@ export default function AccountProfile() {
           gutterBottom
           variant="h4"
         >
-          {user.name}
+          {m_token.username}
         </Typography>
       </Grid>         
     </Grid>

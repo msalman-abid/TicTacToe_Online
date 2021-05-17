@@ -7,7 +7,7 @@ import {
 import AccountProfile from './account_profile';
 import AccountProfileDetails from './account_profile_details';
 
-export default function Account() {
+export default function Account({m_token}) {
 
   return(
   <>
@@ -35,7 +35,7 @@ export default function Account() {
             md={6}
             xs={12}
           >
-            <AccountProfile />
+            <AccountProfile m_token={m_token}/>
           </Grid>
           <Grid
             item
@@ -43,7 +43,7 @@ export default function Account() {
             md={6}
             xs={12}
           >
-            <AccountProfileDetails />
+            <AccountProfileDetails m_token={m_token} />
           </Grid>
         </Grid>
       </Container>

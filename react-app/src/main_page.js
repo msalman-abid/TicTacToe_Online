@@ -23,9 +23,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Page()
+function ProfileEnable(classes){
+  return(
+    <Button
+      type="submit"
+        fullWidth
+        variant="contained"
+        color="primary"
+        className={classes.btn}
+        href={"/profile"}
+        // disabled={!status}
+      >
+        View Profile
+      </Button>
+  );
+}
+
+export default function Page({status})
 {
   const classes = useStyles();
+  console.log(status);
+  var profileButton = "";
+  if (status){
+    profileButton = ProfileEnable(classes)
+  }
 
   return (
       <Box
@@ -78,10 +99,13 @@ export default function Page()
                 variant="contained"
                 color="primary"
                 className={classes.btn}
-                href="/login"
+                href="/leaderboard"
               >
-                Log In
+                Leaderboard
               </Button>
+              {profileButton}
+
+              
 
         </div>
       </Container>
