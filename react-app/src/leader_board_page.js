@@ -16,62 +16,32 @@ import {
   Tooltip
 } from '@material-ui/core';
 
-// const players = [
-//   {
-//     rank: '1',
-//     name:'Nasir Azeemi',
-//     games: '10',
-//     wld: '9 / 0 / 1'
-//   },
-//   {
-//     rank: '2',
-//     name:'SaLman Abid',
-//     games: '15',
-//     wld: '6 / 9 / 0'
-//   },
-//   {
-//     rank: '3',
-//     name:'Omema Ahmed',
-//     games: '5',
-//     wld: '4 / 1 / 0'
-//   },
-//   {
-//     rank: '4',
-//     name:'Safi Haider',
-//     games: '3',
-//     wld: '3 / 0 / 0'
-//   }
-// ];s
-// console.log(players);
-async function fetchPlayers() {
-  return fetch('http://localhost:9000/users/leaderboard', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  }).then(data => data.json())
-}
-
-var players;
-
-async function parsePlayers() {
-  var result = await fetchPlayers();
-  var ans = Array();
-  var count = 1;
-  result.forEach(element => {
-
-    ans.push({
-      rank: count,
-      name: element.email,
-      games: 0,
-      wld: element.won +' / ' + element.draw +' / ' + element.lost
-    })
-    count++;
-  });
-  console.log(ans);
-  players = ans;
-}
-parsePlayers();
+const players = [
+  {
+    rank: '1',
+    name:'Nasir Azeemi',
+    games: '10',
+    wld: '9 / 0 / 1'
+  },
+  {
+    rank: '2',
+    name:'SaLman Abid',
+    games: '15',
+    wld: '6 / 9 / 0'
+  },
+  {
+    rank: '3',
+    name:'Omema Ahmed',
+    games: '5',
+    wld: '4 / 1 / 0'
+  },
+  {
+    rank: '4',
+    name:'Safi Haider',
+    games: '3',
+    wld: '3 / 0 / 0'
+  }
+];
 
 export default function LatestOrders(){
     return(
@@ -82,7 +52,9 @@ export default function LatestOrders(){
       py: 3
     }}
     >
-      <Button href="/">
+      <Button
+        href="/loggedinmain"
+        >
         Go Back
       </Button>
       <Container maxWidth="lg">

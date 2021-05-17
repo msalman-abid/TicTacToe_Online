@@ -62,6 +62,8 @@ export default function LogIn({setToken}) {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    console.log("Testing");
+    console.log("handling submit");
     const token = await loginUser({
       username,
       password
@@ -80,7 +82,11 @@ export default function LogIn({setToken}) {
         py: 3
       }}
     >
-    <Button href="/"> Main Page </Button>
+    <Button
+      href="/"
+      >
+      Main Page
+    </Button>
     <Container maxWidth="xs">
       <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -127,11 +133,11 @@ export default function LogIn({setToken}) {
             Log In
           </Button>
           <Grid container>
-            {/* <Grid item xs>
+            <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
-            </Grid> */}
+            </Grid>
             <Grid item>
               <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}

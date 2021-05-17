@@ -62,8 +62,8 @@ export default function Page()
               </Button>
 
               <Button
-              type="submit"
               style={{width:'200px'}}
+              type="submit"
                 variant="contained"
                 color="primary"
                 className={classes.btn}
@@ -78,9 +78,9 @@ export default function Page()
                 variant="contained"
                 color="primary"
                 className={classes.btn}
-                href="/login"
+                href="/logged_main"
               >
-                Log In Test
+                LogIn Test
               </Button>
 
         </div>

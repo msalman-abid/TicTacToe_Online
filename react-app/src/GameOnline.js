@@ -217,7 +217,7 @@ function Square(props) {
       return (
         <div>
           {this.renderConfetti()}
-          <Button href="/">Abandon</Button>
+          <Button variant="contained" color="default" size='large' href="/">Abandon</Button>
 
           <div className="game">
             <Board setWinner={this.boardSetWinner} socket ={this.state.socket}/>
@@ -261,6 +261,10 @@ function Square(props) {
     }
     return true; 
   }
-
+  function clearBoard()
+  {
+    let temp;
+    fetch('http://localhost:9000/game');
+  }
 
 export default GameOnline;

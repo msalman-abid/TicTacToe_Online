@@ -19,7 +19,7 @@ export default function Account() {
       }}
     >
       <Button
-        href="/logged_main"
+      href="/loggedinmain"
       >
         Go Back
       </Button>
