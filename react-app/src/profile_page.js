@@ -18,7 +18,9 @@ export default function Account() {
         py: 3
       }}
     >
-      <Button>
+      <Button
+        href="/logged_main"
+      >
         Go Back
       </Button>
       <Container maxWidth="lg">

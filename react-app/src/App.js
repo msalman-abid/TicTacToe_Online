@@ -7,9 +7,9 @@ import SignUp from './signup_page'
 import GameOffline from './GameOffline';
 import GameOnline from './GameOnline';
 import useToken from './useToken';
-import LatestOrders from './leader_board_page'
-import Account from './profile_page'
-
+import Profile from './profile_page'
+import Leaderboard from './leader_board_page'
+import LogedinMain from './loggedin_main_page'
 
 function App() {
   
@@ -28,6 +28,15 @@ function App() {
     <div className="wrapper">
       <BrowserRouter>
         <Switch>
+        <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/leaderboard">
+            <Leaderboard />
+          </Route>
+          <Route path="/logged_main">
+            <LogedinMain />
+          </Route>
           <Route path="/game">
             <GameOffline />
           </Route>
