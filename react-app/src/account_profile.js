@@ -11,10 +11,11 @@ import {
   Typography
 } from '@material-ui/core';
 import EmojiEventsOutlinedIcon from '@material-ui/icons/EmojiEventsOutlined';
+import omi from "./icon.png";
 
 
 const user = {
-  avatar: './tto.png',
+  avatar: './icon.png',
   name: '<Player Name>',
   rank: '<Rank>'
 };
@@ -58,7 +59,7 @@ export default function AccountProfile({m_token}) {
 
       <Grid item >
         <Avatar
-            src={user.avatar}
+            src={omi}
             className={classes.large}
           />
       </Grid>
@@ -87,7 +88,7 @@ export default function AccountProfile({m_token}) {
                 gutterBottom
                 variant="h7"
               >
-                Rank
+                Rating
               </Typography>
             </TableCell>
 
@@ -98,7 +99,7 @@ export default function AccountProfile({m_token}) {
                 gutterBottom
                 variant="h7"
               >
-                {user.rank}
+                {1500 + 100*parseInt(m_token.won)+ 25*parseInt(m_token.draw) - 100*parseInt(m_token.lost)}
               </Typography>
 
             </TableCell>

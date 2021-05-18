@@ -20,7 +20,7 @@ export default function Account({m_token}) {
         py: 3
       }}
     >
-      <Button size='large' href="/">
+      <Button variant='outlined' size='large' href="/">
         Go Back
       </Button>
       <Container maxWidth="lg">

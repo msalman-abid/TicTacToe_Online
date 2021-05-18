@@ -2,10 +2,7 @@ import React from 'react';
 import './Game.css';
 import { Button, Box, Container, Grid, Typography } from '@material-ui/core';
 import Confetti from 'react-confetti'
-// import useWindowSize from 'react-use-window-size'
 import socketClient from "socket.io-client";
-import useToken from './useToken';
-
 import AccountProfile from './account_profile';
 
 
@@ -329,7 +326,7 @@ class GameOnline extends React.Component {
         {this.renderConfetti()}
 
         <Box>
-          <Button size='large' href="/">Abandon</Button>
+          <Button variant='outlined' size='large' href="/">Go Back</Button>
 
           <Container
             style={{

@@ -1,8 +1,7 @@
-import ReactDOM from 'react-dom';
 import './Game.css'
 import {Button, Box, Typography, Grid, Container} from '@material-ui/core';
 import Confetti from 'react-confetti';
-import React, { Component } from 'react'
+import React from 'react'
 
 
 function Square(props) {
@@ -103,33 +102,35 @@ class Board extends React.Component {
   } 
   
   renderTime() {
-    if (calculateWinner(this.state.squares) || checkDraw(this.state.squares)) {
-      return;
-    }
-    if(this.state.timer >=0){
-      return (
-        <div>
-          <h3>Time Remaining: {this.state.timer}</h3>
-        </div>
-      )
-    }
-    else{
-      let squares = this.state.squares.slice();
-      let val = this.state.xIsNext ? 'X' : 'O';
-
-      let free = Array();
-      for (let index = 0; index < squares.length; index++) {
-        if(squares[index] == null){
-          free.push(index);
-        }
+    if(this.props.mode == "rapid"){
+      if (calculateWinner(this.state.squares) || checkDraw(this.state.squares)) {
+        return;
       }
-      let i = free[Math.floor(Math.random() * free.length)];
-      squares[i] = val;
-      this.setState({
-        squares: squares,
-        xIsNext: !this.state.xIsNext,
-        timer: 3,
-      })
+      if(this.state.timer >=0){
+        return (
+          <div>
+            <h3>Time Remaining: {this.state.timer}</h3>
+          </div>
+        )
+      }
+      else{
+        let squares = this.state.squares.slice();
+        let val = this.state.xIsNext ? 'X' : 'O';
+
+        let free = Array();
+        for (let index = 0; index < squares.length; index++) {
+          if(squares[index] == null){
+            free.push(index);
+          }
+        }
+        let i = free[Math.floor(Math.random() * free.length)];
+        squares[i] = val;
+        this.setState({
+          squares: squares,
+          xIsNext: !this.state.xIsNext,
+          timer: 3,
+        })
+      }
     }
   }
 
@@ -188,12 +189,6 @@ class Board extends React.Component {
       
       let status_class = winner? "status_winner":draw?"status_draw":"status";
       
-      if(this.props.mod =="rapid"){
-        if(this.state.timer <= 3){
-          
-        }
-        
-      }
         
       return ( 
         <Grid container spacing={10} justify='center' direction='column' alignItems='center'>
@@ -307,7 +302,7 @@ componentWillMount() {
               >
               <Board setWinner={this.boardSetWinner} mode={this.props.mode}/>  
             </Container>
-              <Button variant='outlined' size='large' href="/">Abandon</Button>
+              <Button variant='outlined' size='large' href="/">Go Back</Button>
               
         </Box>    
       </>

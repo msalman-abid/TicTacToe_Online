@@ -58,6 +58,7 @@ export default function SignUp( {setToken} ) {
         password
       });
       setToken(token);
+      window.location.href = "/";
     }
 
   const classes = useStyles();
@@ -71,7 +72,7 @@ export default function SignUp( {setToken} ) {
     }}
     >
   
-    <Button size='large' href="/"> Main Page</Button>
+    <Button variant='outlined' size='large' href="/"> Main Page</Button>
     
     <Container maxWidth="xs">
       <div className={classes.paper}>
