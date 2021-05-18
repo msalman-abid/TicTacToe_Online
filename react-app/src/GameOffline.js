@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Game.css';
 // import LinkButton from './LinkButton'
-import Button from '@material-ui/core/Button';
+import {Button, Box, Typography, Grid, Container} from '@material-ui/core';
 import Confetti from 'react-confetti'
 // import useWindowSize from 'react-use-window-size'
 
@@ -71,52 +71,63 @@ function Square(props) {
         draw= true;
       } 
       else {
-        status = 'Player: ' + (this.state.xIsNext ? 'X' : 'O');
+        status = 'Player Turn: ' + (this.state.xIsNext ? 'X' : 'O');
       }
 
       let status_class = winner? "status_winner":draw?"status_draw":"status";
       return ( 
-        <div>
-          <div className={status_class}>
-            {status}
-          </div>
-          <div class="row border-b">
-            <div class="col border-r">
-              {this.renderSquare(0)}
-            </div>
-            <div class="col border-r">
-              {this.renderSquare(1)}
-            </div>
-            <div class="col">
-              {this.renderSquare(2)}
-            </div>
-          </div>
+          <Grid container spacing={10} justify='center' direction='column' alignItems='center'>
+            <Grid item>
+            <Typography variant='h5' align='center' className={status_class}>
+              {status}
+            </Typography>
+            </Grid>
 
-          <div class="row border-b">
-            <div class="col border-r">
-              {this.renderSquare(3)}
+            <Grid item>
+            <div class="row border-b">
+              <div class="col border-r">
+                {this.renderSquare(0)}
+              </div>
+              <div class="col border-r">
+                {this.renderSquare(1)}
+              </div>
+              <div class="col">
+                {this.renderSquare(2)}
+              </div>
             </div>
-            <div class="col border-r">
-              {this.renderSquare(4)}
-            </div>
-            <div class="col">
-              {this.renderSquare(5)}
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col border-r">
-              {this.renderSquare(6)}
+            <div class="row border-b">
+              <div class="col border-r">
+                {this.renderSquare(3)}
+              </div>
+              <div class="col border-r">
+                {this.renderSquare(4)}
+              </div>
+              <div class="col">
+                {this.renderSquare(5)}
+              </div>
             </div>
-            <div class="col border-r">
-              {this.renderSquare(7)}
+
+            <div class="row">
+              <div class="col border-r">
+                {this.renderSquare(6)}
+              </div>
+              <div class="col border-r">
+                {this.renderSquare(7)}
+              </div>
+              <div class="col">
+                {this.renderSquare(8)}
+              </div>
             </div>
-            <div class="col">
-              {this.renderSquare(8)}
-            </div>
-          </div>
-        
-        </div>
+            </Grid>
+
+            <Grid item>
+            <Button variant='outlined' size='large'>
+              Reset Game
+            </Button>
+            </Grid>
+
+        </Grid>
       );
     }
   }
@@ -152,20 +163,23 @@ function Square(props) {
     
     render() {
       return (
-        <div>
+        <>
           {this.renderConfetti()}
-          <Button size='large' href="/">Abandon</Button>
 
-          <div className="game">
-            <Board setWinner={this.boardSetWinner}/>
-          </div>
+          <Box
+            sx={{
+            backgroundColor: 'background.default',
+            minHeight: '100%',
+            py:3}}
+          >
 
-          {/* <div className="game">
-
-            <p className="App-intro">"Test: " + {this.state.apiResponse}</p>
-            <ol>{/* TODO </ol></div> */}
-          
-        </div>
+            <Button size='large' href="/">Abandon</Button>
+              
+              <Container maxWidth='lg' className='game'>
+                <Board setWinner={this.boardSetWinner}/> 
+              </Container>
+          </Box>    
+        </>
       );
     }
   }
