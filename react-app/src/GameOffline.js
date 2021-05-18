@@ -28,25 +28,61 @@ function Square(props) {
         squares: Array(9).fill(null),
         xIsNext: true,
         winner: false,
+        gameCount: 1,
+        reset: false,
+        Xscore: 0,
+        Oscore: 0
       };
     }
+
     
     handleClick(i) {
-      let squares = this.state.squares.slice();
-      let val = this.state.xIsNext ? 'X' : 'O';
+      if (this.props.mode == "regular"){
+        let squares = this.state.squares.slice();
+        let val = this.state.xIsNext ? 'X' : 'O';
 
-      if (calculateWinner(squares) || squares[i]) {
-        return;
+        if (calculateWinner(squares) || squares[i]) {
+          return;
+        }
+        squares[i] = val;
+        this.setState({
+          squares: squares,
+          xIsNext: !this.state.xIsNext,
+        })
+        if (calculateWinner(squares)) {
+          this.props.setWinner(true);
+        }
       }
-      squares[i] = val;
-      this.setState({
-        squares: squares,
-        xIsNext: !this.state.xIsNext,
-      })
-      if (calculateWinner(squares)) {
-        this.props.setWinner();
+      
+      else if (this.props.mode == "bo3"){
+        let squares = this.state.squares.slice();
+        let val = this.state.xIsNext ? 'X' : 'O';
+
+        if (calculateWinner(squares) || squares[i]) {
+          return;
+        }
+        squares[i] = val;
+        this.setState({
+          squares: squares,
+          xIsNext: !this.state.xIsNext,
+        })
+
+        if (calculateWinner(squares)) {
+          this.props.setWinner();
+          if(this.state.gameCount != 3){
+            this.state.gameCount += 1;
+          }
+        }
+        
+        if(this.state.gameCount != 3){
+          
+        }
+        
       }
-    }
+      else if(this.props.mode == "rapid"){
+
+      }
+    } 
 
     renderSquare(i) {
       return (<Square 
@@ -54,7 +90,6 @@ function Square(props) {
       onClick={()=> this.handleClick(i)}
       />);
     }
-
 
   
     render() {
@@ -73,7 +108,9 @@ function Square(props) {
         status = 'Player Turn: ' + (this.state.xIsNext ? 'X' : 'O');
       }
 
+
       let status_class = winner? "status_winner":draw?"status_draw":"status";
+
       return ( 
           <Grid container spacing={10} justify='center' direction='column' alignItems='center'>
             <Grid item>
@@ -122,9 +159,11 @@ function Square(props) {
 
             <Grid item>
             <Button variant='outlined' size='large'  
-            onClick={() => this.setState({squares: Array(9).fill(null),
+            onClick={() => {this.setState({squares: Array(9).fill(null),
               xIsNext: true,
-              winner: false})}
+              winner: false,
+              reset: true}); 
+              this.props.setWinner(false);}}
             >
               Reset Game
             </Button>
@@ -159,8 +198,8 @@ function Square(props) {
       this.callAPI();
   }
 
-    boardSetWinner=()=>{
-      this.setState({gameWinner:true});
+    boardSetWinner=(winner)=>{
+      this.setState({gameWinner:winner});
     }
     
     render() {
