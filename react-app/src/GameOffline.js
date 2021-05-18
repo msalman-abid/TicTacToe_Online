@@ -27,19 +27,16 @@ function Square(props) {
         winner: false,
         gameCount: 1,
         Xscore: 0,
-        Oscore: 0
+        Oscore: 0,
       };
     }
-    
+
     
     handleClick(i) {
-      // console.log(this.state.Xscore);
-      // console.log(this.state.Oscore);
-
       if (this.props.mode == "regular"){
         let squares = this.state.squares.slice();
         let val = this.state.xIsNext ? 'X' : 'O';
-
+        
         if (calculateWinner(squares) || squares[i]) {
           return;
         }
@@ -52,11 +49,11 @@ function Square(props) {
           this.props.setWinner(true);
         }
       }
-
+      
       else if (this.props.mode == "bo3"){
         let squares = this.state.squares.slice();
         let val = this.state.xIsNext ? 'X' : 'O';
-
+        
         if (calculateWinner(squares) || squares[i]) {
           return;
         }
@@ -65,83 +62,83 @@ function Square(props) {
           squares: squares,
           xIsNext: !this.state.xIsNext,
         })
-
+        
         if (calculateWinner(squares)) {
           let winner = calculateWinner(squares);
-
+          
           if(winner == 'X'){
+            console.log("Winner X");
             this.setState({
-              Xscore : this.state.Xscore +1
+              Xscore : this.state.Xscore+=1
             })
+            console.log("updated X");
+            console.log(this.state.Xscore);
           }
           else if(winner == 'O'){
             this.setState({
-              Oscore : this.state.Oscore +1
+              Oscore : this.state.Oscore +=1
             })
           }
           if(this.state.gameCount != 3){
-            // console.log("Here5");
             this.state.gameCount += 1;
             
             this.setState({squares: Array(9).fill(null),
               xIsNext: true,
               winner: false});
               this.props.setWinner(false)
+              console.log("Next Game");
             }
             else{
-            // console.log("Here1");
-            if (this.state.Xscore != this.state.Oscore){
-              // console.log("Here2");
-              this.props.setWinner(true);
-            }
-            else{
-              // console.log("Here");
+                this.props.setWinner(true);
+              }
+          }
+          else if(checkDraw(squares)){
+            if(this.state.gameCount != 3){
+              this.state.gameCount += 1;
+              
+              this.setState({squares: Array(9).fill(null),
+                xIsNext: true,
+                winner: false});
+                this.props.setWinner(false)
+              }
+            else if(this.state.Xscore == this.state.Oscore){
               this.props.setWinner(false);
             }
           }
-        }
-        else if(checkDraw(squares)){
-          if(this.state.gameCount != 3){
-            this.state.gameCount += 1;
-
-            this.setState({squares: Array(9).fill(null),
-              xIsNext: true,
-              winner: false});
-              this.props.setWinner(false)
+          console.log("End Click");
+          console.log(this.state.Xscore);
+          console.log(this.state.Oscore);
           }
-        }      
-      }
-
-      else if(this.props.mode == "rapid"){
-
-      }
-    } 
-
-    renderSquare(i) {
-      return (<Square 
-      value={this.state.squares[i]} 
-      onClick={()=> this.handleClick(i)}
-      />);
-    }
-
-  
+            
+            else if(this.props.mode == "rapid"){
+              
+            }
+          } 
+          
+          renderSquare(i) {
+            return (<Square 
+              value={this.state.squares[i]} 
+              onClick={()=> this.handleClick(i)}
+              />);
+            }
+            
+            
     render() {
-
       let winner = calculateWinner(this.state.squares);
       let status, draw;
-
+              
       if (winner) {
-        status = 'Winner: ' + winner;
         if(this.props.mode == "bo3"){
+          winner = (this.state.Xscore > this.state.Oscore) ? 'X' : 'O';
+          status = 'Winner: ' + winner;
           if(this.state.Xscore == this.state.Oscore){
             status = 'Draw';
             draw= true;
             winner = null;
           }
-          else{
-            winner = (this.state.Xscore > this.state.Oscore) ? 'X' : 'O';
-            status = 'Winner: ' + winner;
-          }
+        }
+        else{
+          status = 'Winner: ' + winner;
         }
       }
 
@@ -261,7 +258,6 @@ function Square(props) {
           {this.renderConfetti()}
 
           <Box>
-            <Button size='large' href="/">Abandon</Button>
               
               <Container maxWidth='lg'
               style={{
@@ -272,6 +268,7 @@ function Square(props) {
               >
                 <Board setWinner={this.boardSetWinner} mode={this.props.mode}/>  
               </Container>
+                <Button size='large' href="/">Abandon</Button>
           </Box>    
         </>
       );
