@@ -1,6 +1,7 @@
 .row 
 {
-  height: 17vh;
+  height: 14vh;
+  
 }
 .confetti{
     position: "absolute";
@@ -21,8 +22,8 @@
 
 .col
 {
-  height: 17vh;
-  width: 17vh;
+  height: 14vh;
+  width: 14vh;
   float: left;
 }
 
@@ -49,11 +50,11 @@
   .square {
     background: #fff;
     float: left;
-    font-size: 17vh;
+    font-size: 14vh;
     font-weight: bold;
-    line-height: 17vh;
-    height: 17vh;
-    width: 17vh;
+    line-height: 14vh;
+    height: 14vh;
+    width: 14vh;
     text-align: center;
     border: none;
     

@@ -1,4 +1,6 @@
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import React, {useEffect, useState} from "react";
+
 import {
   Box,
   Button,
@@ -45,8 +47,36 @@ async function parsePlayers() {
   players = ans;
 }
 
+// parsePlayers();
 export default function Leaderboard(){
-  parsePlayers();
+  const [players, setPlayers] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:9000/users/leaderboard', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }).then(data => data.json())
+  .then( result => {
+    var ans = Array();
+  var count = 1;
+  result.forEach(element => {
+
+    ans.push({
+      rank: count,
+      name: element.email,
+      games: 0,
+      wld: element.won +' / ' + element.draw +' / ' + element.lost
+    })
+    count++;
+  });
+  setPlayers(ans);
+  console.log(players);
+  }
+
+  )
+  }, [])
     return(
     <Box
     sx={{

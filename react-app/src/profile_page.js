@@ -4,10 +4,12 @@ import {
   Container,
   Grid
 } from '@material-ui/core';
+import React, {useEffect, useState} from "react";
 import AccountProfile from './account_profile';
 import AccountProfileDetails from './account_profile_details';
 
 export default function Account({m_token}) {
+  console.log(m_token);
 
   return(
   <>

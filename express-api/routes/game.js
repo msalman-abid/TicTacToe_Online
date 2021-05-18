@@ -24,6 +24,8 @@ router.post('/update', function (req, res, next) {
 
   if (result === "won")
   {
+    token.username +"') + 1";
+
     var value = (parseInt(token.won) + 1);
     updateQuery = "UPDATE users SET won = " + (value.toString()) + 
       " WHERE email like '"+ token.username +"'"; 
@@ -31,12 +33,14 @@ router.post('/update', function (req, res, next) {
   else if (result === "lost")
   {
     var value = (parseInt(token.lost) + 1);
+    token.username +"') + 1";
     updateQuery = "UPDATE users SET lost = " + (value.toString()) + 
       " WHERE email like '"+ token.username +"'"; 
   }
   else if (result === "draw")
   {
     var value = (parseInt(token.draw) + 1);
+    token.username +"') + 1";
     updateQuery = "UPDATE users SET draw = " + value.toString() + 
       " WHERE email like '"+ token.username +"'"; 
   }

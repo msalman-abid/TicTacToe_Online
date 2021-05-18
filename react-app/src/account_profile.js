@@ -56,17 +56,17 @@ export default function AccountProfile({m_token}) {
       style={{ minHeight: '30vh' }}
     >
 
-      <Grid item xs={3}>
+      <Grid item >
         <Avatar
             src={user.avatar}
             className={classes.large}
           />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item >
         <Typography
           color="textPrimary"
           gutterBottom
-          variant="h4"
+          variant="h5"
         >
           {m_token.username}
         </Typography>

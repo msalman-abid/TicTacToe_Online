@@ -110,7 +110,8 @@ class Board extends React.Component {
     else if (result === "lost")
       m_token.lost++;
 
-    this.props.setToken(m_token);
+    console.log(m_token);
+    this.props.setToken(m_token)
   }
 
   componentDidMount() {
@@ -292,7 +293,6 @@ class GameOnline extends React.Component {
     const token = this.state.token;
 
     socket.on("rcv.token", (data) => {
-      console.log(data);
       this.setState({
         opp_token: data.token
       })

@@ -14,9 +14,19 @@ import Account from './profile_page'
 function App() {
   
   var accessOnlineGame, loggedIn;
-  const { token, setToken } = useToken();
+  var { token, setToken } = useToken();
+  
+  function updateToken(result) {
+    if (result === "won")
+    token.won++;
+    else if (result === "draw")
+    token.draw++;
+    else if (result === "lost")
+    token.lost++;
+  }
 
-  if(!token) {
+
+  if(!token ) {
     loggedIn = false;
     accessOnlineGame = <Login setToken={setToken} />
     // accessProfile = <Account setToken={setToken} />
@@ -25,7 +35,7 @@ function App() {
   else{
     // console.log(token);
     loggedIn = true;
-    accessOnlineGame = <GameOnline m_token={token} setToken={setToken}/>
+    accessOnlineGame = <GameOnline m_token={token} setToken={updateToken}/>
     // accessProfile = <
   }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -17,7 +17,20 @@ import EmojiFlagsOutlinedIcon from '@material-ui/icons/EmojiFlagsOutlined';
 
 export default function AccountProfileDetails({m_token})
 {
-
+  const [token, setToken] = useState({});
+  
+  useEffect(() => {
+    fetch('http://localhost:9000/users/profile', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(m_token)
+  }).then(data => data.json())
+  .then(data => {
+    setToken(data.token);
+  }
+  )})
 
   return (
       <Card>
@@ -55,7 +68,7 @@ export default function AccountProfileDetails({m_token})
                 gutterBottom
                 variant="h6"
               >
-                {parseInt(m_token.won) + parseInt(m_token.draw) + parseInt(m_token.lost)}
+                {parseInt(token.won) + parseInt(token.draw) + parseInt(token.lost)}
               </Typography>
               </TableCell>
 
@@ -92,7 +105,7 @@ export default function AccountProfileDetails({m_token})
                     gutterBottom
                     variant="h6"
                   >
-                    {parseInt(m_token.won)}
+                    {parseInt(token.won)}
                   </Typography>
                 </TableCell>
                 </TableRow>
@@ -123,7 +136,7 @@ export default function AccountProfileDetails({m_token})
                     gutterBottom
                     variant="h6"
                   >
-                    {parseInt(m_token.lost)}
+                    {parseInt(token.lost)}
                   </Typography>
                 </TableCell>
                 </TableRow>
@@ -153,7 +166,7 @@ export default function AccountProfileDetails({m_token})
                     gutterBottom
                     variant="h6"
                   >
-                    {parseInt(m_token.draw)}
+                    {parseInt(token.draw)}
                   </Typography>
                 </TableCell>
                 </TableRow>
