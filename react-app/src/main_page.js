@@ -151,24 +151,6 @@ export default function Page({status})
                 <ArrowDropDownIcon/>
               </Button>
 
-              <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                {({ TransitionProps, placement }) => (
-                  <Grow
-                    {...TransitionProps}
-                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                  >
-                    <Paper style={{width:'200px'}} alignItems='center'>
-                      <ClickAwayListener onClickAway={handleClose}>
-                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                          <Button href = "/game" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Regular</Button>
-                          <Button href="/game_rapid" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Rapid Fire</Button>
-                          <Button href="/game_bo3" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Best of Three</Button>
-                        </MenuList>
-                      </ClickAwayListener>
-                    </Paper>
-                  </Grow>
-                )}
-              </Popper>
 
               <Button
               type="submit"
@@ -193,6 +175,25 @@ export default function Page({status})
               </Button>
 
               {profileButton}
+
+              <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                {({ TransitionProps, placement }) => (
+                  <Grow
+                    {...TransitionProps}
+                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                  >
+                    <Paper style={{width:'200px'}} alignItems='center'>
+                      <ClickAwayListener onClickAway={handleClose}>
+                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                          <Button href = "/game" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Regular</Button>
+                          <Button href="/game_rapid" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Rapid Fire</Button>
+                          <Button href="/game_bo3" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Best of Three</Button>
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Paper>
+                  </Grow>
+                )}
+              </Popper>
 
         </div>
       </Container>
