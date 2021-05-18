@@ -117,12 +117,13 @@ class Board extends React.Component {
       let squares = this.state.squares.slice();
       let val = this.state.xIsNext ? 'X' : 'O';
 
-      let i = Math.abs(Math.floor(Math.random() * (0 - 9) + 0));
-      console.log(i);
-      // while(squares[i] != null){
-      //   console.log(i);
-      //   i = Math.abs(Math.floor(Math.random() * (0 - 9) + 0));
-      // }
+      let free = Array();
+      for (let index = 0; index < squares.length; index++) {
+        if(squares[index] == null){
+          free.push(index);
+        }
+      }
+      let i = free[Math.floor(Math.random() * free.length)];
       squares[i] = val;
       this.setState({
         squares: squares,
@@ -306,7 +307,7 @@ componentWillMount() {
               >
               <Board setWinner={this.boardSetWinner} mode={this.props.mode}/>  
             </Container>
-              <Button size='large' href="/">Abandon</Button>
+              <Button variant='outlined' size='large' href="/">Abandon</Button>
               
         </Box>    
       </>
