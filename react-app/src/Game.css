@@ -1,7 +1,7 @@
 
 .row 
 {
-  height: 140px;
+  height: 20vh;
 }
 .confetti{
     position: "absolute";
@@ -12,18 +12,18 @@
 }
 .border-b
 {
-  border-bottom: 10px solid black;
+  border-bottom: 1.1vh solid black;
 }
 
 .border-r
 {
-  border-right: 10px solid black;
+  border-right: 1.1vh solid black;
 }
 
 .col
 {
-  height: 140px;
-  width: 140px;
+  height: 20vh;
+  width: 20vh;
   float: left;
 }
 
@@ -50,11 +50,11 @@
   .square {
     background: #fff;
     float: left;
-    font-size: 100px;
+    font-size: 20vh;
     font-weight: bold;
-    line-height: 100px;
-    height: 140px;
-    width: 140px;
+    line-height: 20vh;
+    height: 20vh;
+    width: 20vh;
     text-align: center;
     border: none;
     
@@ -62,7 +62,7 @@
   
   .square:hover {
     background-color: rgba(211, 211, 211, 0.767);
-    border-radius: 50px;
+    border-radius: 5vh;
   }
   
   .square:focus
