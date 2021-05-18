@@ -18,7 +18,7 @@ export default function Account({m_token}) {
         py: 3
       }}
     >
-      <Button>
+      <Button size='large' href="/">
         Go Back
       </Button>
       <Container maxWidth="lg">

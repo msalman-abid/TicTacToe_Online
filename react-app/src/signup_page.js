@@ -71,7 +71,7 @@ export default function SignUp( {setToken} ) {
     }}
     >
   
-    <Button  variant="contained" color="default" size='large' href="/"> Main Page</Button>
+    <Button size='large' href="/"> Main Page</Button>
     
     <Container maxWidth="xs">
       <div className={classes.paper}>
@@ -92,20 +92,6 @@ export default function SignUp( {setToken} ) {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Grid>
-            {/* <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Grid> */}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"

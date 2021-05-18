@@ -55,7 +55,7 @@ export default function LatestOrders(){
       py: 3
     }}
     >
-      <Button href="/">
+      <Button size='large' href="/">
         Go Back
       </Button>
       <Container maxWidth="lg">

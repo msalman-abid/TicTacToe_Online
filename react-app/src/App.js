@@ -7,8 +7,8 @@ import SignUp from './signup_page'
 import GameOffline from './GameOffline';
 import GameOnline from './GameOnline';
 import useToken from './useToken';
-import LatestOrders from './leader_board_page'
-import Account from './profile_page'
+import Leaderboard from './leader_board_page'
+import Profile from './profile_page'
 
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
             {accessOnlineGame}
           </Route>
           <Route path="/profile">
-            <Account m_token={token}/>
+            <Profile m_token={token}/>
           </Route>
           <Route path="/login">
             <Login setToken={setToken}/>
@@ -49,7 +49,7 @@ function App() {
             <SignUp setToken={setToken} />
           </Route>
           <Route path="/leaderboard">
-            <LatestOrders/>
+            <Leaderboard/>
           </Route>
           <Route path="/">
             <Page status={loggedIn}/>
