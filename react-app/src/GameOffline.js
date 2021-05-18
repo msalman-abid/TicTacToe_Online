@@ -46,7 +46,6 @@ function Square(props) {
       if (calculateWinner(squares)) {
         this.props.setWinner();
       }
-
     }
 
     renderSquare(i) {
@@ -141,8 +140,7 @@ function Square(props) {
       super(props);
       this.state = { 
       apiResponse: "", 
-      gameWinner: false };
- 
+      gameWinner: false};
   }
   
   callAPI() {
@@ -180,7 +178,7 @@ function Square(props) {
                 top: '50%',
                 transform: 'translate(-50%, -50%)'}}
               >
-                <Board setWinner={this.boardSetWinner}/> 
+                <Board setWinner={this.boardSetWinner} mode={this.props.mode}/>  
               </Container>
           </Box>    
         </>

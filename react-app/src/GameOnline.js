@@ -28,7 +28,6 @@ function Square(props) {
           variant="contained"
           color="primary"
           href={"/profile"}
-          // disabled={!status}
         >
           View Profile
         </Button>

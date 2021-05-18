@@ -160,9 +160,9 @@ export default function Page({status})
                     <Paper style={{width:'200px'}} alignItems='center'>
                       <ClickAwayListener onClickAway={handleClose}>
                         <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                          <MenuItem onClick={handleClose}>Profile</MenuItem>
-                          <MenuItem onClick={handleClose}>My account</MenuItem>
-                          <MenuItem onClick={handleClose}>Logout</MenuItem>
+                          <Button href = "/game" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Regular</Button>
+                          <Button href="/game_rapid" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Rapid Fire</Button>
+                          <Button href="/game_bo3" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Best of Three</Button>
                         </MenuList>
                       </ClickAwayListener>
                     </Paper>

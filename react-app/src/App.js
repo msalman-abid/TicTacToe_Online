@@ -34,7 +34,13 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/game">
-            <GameOffline />
+            <GameOffline mode={"regular"}/>
+          </Route>
+          <Route path="/game_rapid">
+            <GameOffline mode={"rapid"}/>
+          </Route>
+          <Route path="/game_bo3">
+            <GameOffline mode={"bo3"}/>
           </Route>
           <Route path="/game_online">
             {accessOnlineGame}
