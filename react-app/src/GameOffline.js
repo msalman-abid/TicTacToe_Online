@@ -166,16 +166,16 @@ function Square(props) {
         <>
           {this.renderConfetti()}
 
-          <Box
-            sx={{
-            backgroundColor: 'background.default',
-            minHeight: '100%',
-            py:3}}
-          >
-
+          <Box>
             <Button size='large' href="/">Abandon</Button>
               
-              <Container maxWidth='lg' className='game'>
+              <Container maxWidth='lg'
+              style={{
+                position: 'absolute', 
+                left: '50%', 
+                top: '50%',
+                transform: 'translate(-50%, -50%)'}}
+              >
                 <Board setWinner={this.boardSetWinner}/> 
               </Container>
           </Box>    
