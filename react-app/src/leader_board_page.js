@@ -45,7 +45,7 @@ async function parsePlayers() {
   players = ans;
 }
 
-export default function LatestOrders(){
+export default function Leaderboard(){
   parsePlayers();
     return(
     <Box

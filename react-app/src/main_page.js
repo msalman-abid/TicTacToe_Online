@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileEnable(classes){
   return(
+    <>
     <Button
       type="submit"
         style={{width:'200px'}}
@@ -36,6 +37,20 @@ function ProfileEnable(classes){
       >
         View Profile
       </Button>
+
+      <Button
+      type="submit"
+        style={{width:'200px'}}
+        variant="outlined"
+        color="primary"
+        className={classes.btn}
+        href={"/"}
+        // disabled={!status}
+      >
+        Sign Out
+      </Button>
+      
+    </>
   );
 }
 
@@ -105,6 +120,7 @@ export default function Page({status})
               >
                 Leaderboard
               </Button>
+
               {profileButton}
 
         </div>

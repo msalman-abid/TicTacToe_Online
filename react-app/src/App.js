@@ -8,7 +8,7 @@ import GameOffline from './GameOffline';
 import GameOnline from './GameOnline';
 import useToken from './useToken';
 import Leaderboard from './leader_board_page'
-import Profile from './profile_page'
+import Account from './profile_page'
 
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
             {accessOnlineGame}
           </Route>
           <Route path="/profile">
-            <Profile m_token={token}/>
+            <Account m_token={token}/>
           </Route>
           <Route path="/login">
             <Login setToken={setToken}/>
