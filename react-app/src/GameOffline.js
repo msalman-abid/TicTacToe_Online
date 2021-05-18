@@ -122,7 +122,11 @@ function Square(props) {
             </Grid>
 
             <Grid item>
-            <Button variant='outlined' size='large'>
+            <Button variant='outlined' size='large'  
+            onClick={() => this.setState({squares: Array(9).fill(null),
+              xIsNext: true,
+              winner: false})}
+            >
               Reset Game
             </Button>
             </Grid>
