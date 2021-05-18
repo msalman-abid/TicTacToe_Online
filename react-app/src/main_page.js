@@ -1,4 +1,5 @@
 import React from 'react';
+import useToken from './useToken';
 
 import {
   Button,
@@ -24,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ProfileEnable(classes){
+  const { token, setToken } = useToken();
+  
   return(
     <>
     <Button
@@ -33,7 +36,6 @@ function ProfileEnable(classes){
         color="primary"
         className={classes.btn}
         href={"/profile"}
-        // disabled={!status}
       >
         View Profile
       </Button>
@@ -45,7 +47,7 @@ function ProfileEnable(classes){
         color="primary"
         className={classes.btn}
         href={"/"}
-        // disabled={!status}
+        onClick={() => setToken(null)}
       >
         Sign Out
       </Button>
@@ -62,6 +64,9 @@ export default function Page({status})
   if (status){
     profileButton = ProfileEnable(classes)
   }
+
+  console.log("Status");
+  console.log(status);
 
   return (
       <Box
