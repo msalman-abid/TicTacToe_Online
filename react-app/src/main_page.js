@@ -8,7 +8,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 
-import background from "./bkg.png";
+import background from "./bkg-3.png";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,7 +27,7 @@ function ProfileEnable(classes){
   return(
     <Button
       type="submit"
-        fullWidth
+        style={{width:'200px'}}
         variant="contained"
         color="primary"
         className={classes.btn}
@@ -50,29 +50,31 @@ export default function Page({status})
 
   return (
       <Box
-      sx={{
-        backgroundColor: 'background.default',
-        minHeight: '100%',
-        py: 3
-      }}
       style={{backgroundImage: `url(${background})`,
-      backgroundRepeat: 'no-repeat',
+      height:'95vh',
+      width:'97vw',
+      backgroundRepeat: 'repeat',
       backgroundPosition: "center",
-      backgroundSize: "contain",
+      backgroundSize: "auto"}}
+      >
+
+      <Container
+      style={{
       position: 'absolute', 
       left: '50%', 
       top: '50%',
       transform: 'translate(-50%, -50%)'}}
       >
-
-      <Container>
-        <Typography variant="h5" align="center">
-        TIC TAC TOE ONLINE
+        <Typography variant="h3" align="center">
+        TIC TAC TOE
+        </Typography>
+        <Typography variant="h3" align="center">
+        ONLINE
         </Typography>
         
         <div className={classes.paper}>
               <Button
-              fullWidth
+              style={{width:'200px'}}
               type="submit"
                 variant="contained"
                 color="primary"
@@ -84,7 +86,7 @@ export default function Page({status})
 
               <Button
               type="submit"
-                fullWidth
+              style={{width:'200px'}}
                 variant="contained"
                 color="primary"
                 className={classes.btn}
@@ -95,7 +97,7 @@ export default function Page({status})
 
               <Button
               type="submit"
-                fullWidth
+              style={{width:'200px'}}
                 variant="contained"
                 color="primary"
                 className={classes.btn}
@@ -104,8 +106,6 @@ export default function Page({status})
                 Leaderboard
               </Button>
               {profileButton}
-
-              
 
         </div>
       </Container>
