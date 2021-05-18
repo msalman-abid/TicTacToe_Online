@@ -119,7 +119,18 @@ module.exports = function (app, server) {
             if (opponentOf(socket)) {
                 opponentOf(socket).emit("opponent.left");
             }
+            if (unmatched == socket.id) {
+                unmatched = null;
+            }
+
         });
+
+        socket.on("send.token", (data) => {
+            if(opponentOf(socket)) {
+                opponentOf(socket).emit("rcv.token", data);
+            }
+        }
+        )
     });
 
 
@@ -148,6 +159,13 @@ module.exports = function (app, server) {
         return players[players[socket.id].opponent].socket;
     }
 
+    function matchEnd(socket_data) {
+        
+    }
+
+    function getToken(params) {
+        
+    }
 }
 
 // var io = app.get("io");  

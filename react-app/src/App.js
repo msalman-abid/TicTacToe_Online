@@ -25,7 +25,7 @@ function App() {
   else{
     // console.log(token);
     loggedIn = true;
-    accessOnlineGame = <GameOnline m_token={token} />
+    accessOnlineGame = <GameOnline m_token={token} setToken={setToken}/>
     // accessProfile = <
   }
 
