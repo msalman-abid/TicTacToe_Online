@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Game.css';
-// import LinkButton from './LinkButton'
+import './Game.css'
 import {Button, Box, Typography, Grid, Container} from '@material-ui/core';
-import Confetti from 'react-confetti'
-// import useWindowSize from 'react-use-window-size'
-
+import Confetti from 'react-confetti';
 
 
 function Square(props) {
@@ -29,14 +26,16 @@ function Square(props) {
         xIsNext: true,
         winner: false,
         gameCount: 1,
-        reset: false,
         Xscore: 0,
         Oscore: 0
       };
     }
-
+    
     
     handleClick(i) {
+      // console.log(this.state.Xscore);
+      // console.log(this.state.Oscore);
+
       if (this.props.mode == "regular"){
         let squares = this.state.squares.slice();
         let val = this.state.xIsNext ? 'X' : 'O';
@@ -53,7 +52,7 @@ function Square(props) {
           this.props.setWinner(true);
         }
       }
-      
+
       else if (this.props.mode == "bo3"){
         let squares = this.state.squares.slice();
         let val = this.state.xIsNext ? 'X' : 'O';
@@ -68,17 +67,51 @@ function Square(props) {
         })
 
         if (calculateWinner(squares)) {
-          this.props.setWinner();
+          let winner = calculateWinner(squares);
+
+          if(winner == 'X'){
+            this.setState({
+              Xscore : this.state.Xscore +1
+            })
+          }
+          else if(winner == 'O'){
+            this.setState({
+              Oscore : this.state.Oscore +1
+            })
+          }
           if(this.state.gameCount != 3){
+            // console.log("Here5");
             this.state.gameCount += 1;
+            
+            this.setState({squares: Array(9).fill(null),
+              xIsNext: true,
+              winner: false});
+              this.props.setWinner(false)
+            }
+            else{
+            // console.log("Here1");
+            if (this.state.Xscore != this.state.Oscore){
+              // console.log("Here2");
+              this.props.setWinner(true);
+            }
+            else{
+              // console.log("Here");
+              this.props.setWinner(false);
+            }
           }
         }
-        
-        if(this.state.gameCount != 3){
-          
-        }
-        
+        else if(checkDraw(squares)){
+          if(this.state.gameCount != 3){
+            this.state.gameCount += 1;
+
+            this.setState({squares: Array(9).fill(null),
+              xIsNext: true,
+              winner: false});
+              this.props.setWinner(false)
+          }
+        }      
       }
+
       else if(this.props.mode == "rapid"){
 
       }
@@ -93,21 +126,38 @@ function Square(props) {
 
   
     render() {
-      const winner = calculateWinner(this.state.squares);
+
+      let winner = calculateWinner(this.state.squares);
       let status, draw;
+
       if (winner) {
         status = 'Winner: ' + winner;
+        if(this.props.mode == "bo3"){
+          if(this.state.Xscore == this.state.Oscore){
+            status = 'Draw';
+            draw= true;
+            winner = null;
+          }
+          else{
+            winner = (this.state.Xscore > this.state.Oscore) ? 'X' : 'O';
+            status = 'Winner: ' + winner;
+          }
+        }
       }
 
       else if(checkDraw(this.state.squares))
       {
-        status = 'Draw';
-        draw= true;
-      } 
+        if(this.props.mode == "bo3" && this.state.gameCount != 3){ 
+          status = 'Player Turn: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
+        else{
+          status = 'Draw';
+          draw= true;
+        }
+      }
       else {
         status = 'Player Turn: ' + (this.state.xIsNext ? 'X' : 'O');
       }
-
 
       let status_class = winner? "status_winner":draw?"status_draw":"status";
 
@@ -162,7 +212,10 @@ function Square(props) {
             onClick={() => {this.setState({squares: Array(9).fill(null),
               xIsNext: true,
               winner: false,
-              reset: true}); 
+              gameCount: 1,
+              Xscore: 0,
+              Oscore: 0
+            }); 
               this.props.setWinner(false);}}
             >
               Reset Game
