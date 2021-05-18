@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState}  from "react";
+import { useState } from "react";
 import PropTypes from 'prop-types';
 import {
   Grid,
@@ -44,13 +44,14 @@ async function loginUser(credentials) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({credentials
+    body: JSON.stringify({
+      credentials
     })
   }).then(data => data.json())
 }
 
 
-export default function LogIn({setToken}) {
+export default function LogIn({ setToken }) {
 
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
@@ -74,68 +75,68 @@ export default function LogIn({setToken}) {
 
   return (
     <Box
-    sx={{
+      sx={{
         backgroundColor: 'background.default',
         minHeight: '100%',
         py: 3
       }}
     >
-    <Button variant='outlined' size='large' href="/"> Main Page </Button>
-    <Container maxWidth="xs">
-      <div className={classes.paper}>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <TextField
-            color="white"
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="User Name"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            type="username"
-            value={username}
-            onChange={(e) => setusername(e.target.value)}
-          />
-          <TextField
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            disabled={!validateForm()}
-          >
-            Log In
+      <Button variant='outlined' size='large' href="/"> Main Page </Button>
+      <Container maxWidth="xs">
+        <div className={classes.paper}>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <TextField
+              color="white"
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="User Name"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              type="username"
+              value={username}
+              onChange={(e) => setusername(e.target.value)}
+            />
+            <TextField
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              disabled={!validateForm()}
+            >
+              Log In
           </Button>
-          <Grid container>
-            <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
+            <Grid container>
+              <Grid item>
+                <Link href="/signup" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
     </Box>
   );
 }

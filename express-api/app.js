@@ -14,8 +14,6 @@ var testAPIRouter = require("./routes/testAPI");
 var gameRouter = require('./routes/game');
 var loginRouter = require('./routes/login');
 
-// var app = express();
-// opponent: scoket.id of the opponent, symbol = "X" | "O", socket: player's s
 var players = {};
 var unmatched;
 var clients = {};
@@ -25,7 +23,6 @@ module.exports = function (app, server) {
     var io = socketIo(server, {
         cors: {
             origin: "*"
-            // methods: ["GET", "POST"]
         }
     });
     app.set("io", io)
@@ -39,7 +36,7 @@ module.exports = function (app, server) {
     });
 
     app.set("pool", pool)
-    
+
     // view engine setup
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'jade');
@@ -126,7 +123,7 @@ module.exports = function (app, server) {
         });
 
         socket.on("send.token", (data) => {
-            if(opponentOf(socket)) {
+            if (opponentOf(socket)) {
                 opponentOf(socket).emit("rcv.token", data);
             }
         }
@@ -160,9 +157,3 @@ module.exports = function (app, server) {
     }
 
 }
-
-// var io = app.get("io");  
-
-
-
-// module.exports = app;

@@ -12,31 +12,28 @@ import Account from './profile_page'
 
 
 function App() {
-  
+
   var accessOnlineGame, loggedIn;
   var { token, setToken } = useToken();
-  
+
   function updateToken(result) {
     if (result === "won")
-    token.won++;
+      token.won++;
     else if (result === "draw")
-    token.draw++;
+      token.draw++;
     else if (result === "lost")
-    token.lost++;
+      token.lost++;
   }
 
 
-  if(!token ) {
+  if (!token) {
     loggedIn = false;
     accessOnlineGame = <Login setToken={setToken} />
-    // accessProfile = <Account setToken={setToken} />
 
   }
-  else{
-    // console.log(token);
+  else {
     loggedIn = true;
-    accessOnlineGame = <GameOnline m_token={token} setToken={updateToken}/>
-    // accessProfile = <
+    accessOnlineGame = <GameOnline m_token={token} setToken={updateToken} />
   }
 
   return (
@@ -44,31 +41,31 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/game">
-            <GameOffline mode={"regular"}/>
+            <GameOffline mode={"regular"} />
           </Route>
           <Route path="/game_rapid">
-            <GameOffline mode={"rapid"}/>
+            <GameOffline mode={"rapid"} />
           </Route>
           <Route path="/game_bo3">
-            <GameOffline mode={"bo3"}/>
+            <GameOffline mode={"bo3"} />
           </Route>
           <Route path="/game_online">
             {accessOnlineGame}
           </Route>
           <Route path="/profile">
-            <Account m_token={token}/>
+            <Account m_token={token} />
           </Route>
           <Route path="/login">
-            <Login setToken={setToken}/>
+            <Login setToken={setToken} />
           </Route>
           <Route path="/signup">
             <SignUp setToken={setToken} />
           </Route>
           <Route path="/leaderboard">
-            <Leaderboard/>
+            <Leaderboard />
           </Route>
           <Route path="/">
-            <Page status={loggedIn}/>
+            <Page status={loggedIn} />
           </Route>
         </Switch>
       </BrowserRouter>

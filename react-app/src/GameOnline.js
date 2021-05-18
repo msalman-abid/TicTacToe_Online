@@ -49,7 +49,7 @@ class Board extends React.Component {
     };
   }
 
-  
+
   handleClick(i) {
     if (!this.state.myTurn || this.state.opp_left) {
       return;
@@ -88,7 +88,7 @@ class Board extends React.Component {
   UpdateStats(result, m_token) {
 
 
-  
+
     fetch('http://localhost:9000/game/update', {
       method: 'POST',
       headers: {
@@ -156,7 +156,7 @@ class Board extends React.Component {
         this.UpdateStats("won", token);
       }
       else if (calculateWinner(this.state.squares) &&
-      calculateWinner(this.state.squares) !== this.state.symbol) {
+        calculateWinner(this.state.squares) !== this.state.symbol) {
         this.UpdateStats("lost", token);
       }
       else if (checkDraw(this.state.squares)) {
@@ -302,9 +302,8 @@ class GameOnline extends React.Component {
 
   }
 
-  boardSetToken = (m_token) =>
-  {
-    this.setState({token:m_token});
+  boardSetToken = (m_token) => {
+    this.setState({ token: m_token });
   }
 
   boardSetWinner = () => {

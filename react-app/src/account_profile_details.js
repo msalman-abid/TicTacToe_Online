@@ -15,81 +15,81 @@ import SportsEsportsOutlinedIcon from '@material-ui/icons/SportsEsportsOutlined'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import EmojiFlagsOutlinedIcon from '@material-ui/icons/EmojiFlagsOutlined';
 
-export default function AccountProfileDetails({m_token})
-{
+export default function AccountProfileDetails({ m_token }) {
   const [token, setToken] = useState({});
-  
+
   useEffect(() => {
     fetch('http://localhost:9000/users/profile', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(m_token)
-  }).then(data => data.json())
-  .then(data => {
-    setToken(data.token);
-  }
-  )})
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(m_token)
+    }).then(data => data.json())
+      .then(data => {
+        setToken(data.token);
+      }
+      )
+  })
 
   return (
-      <Card>
-        <CardHeader
-          title="Game Stats"
-        />
-        <Divider />
-        <CardContent>
+    <Card>
+      <CardHeader
+        title="Game Stats"
+      />
+      <Divider />
+      <CardContent>
+        <Grid
+          container
+          spacing={3}
+        >
           <Grid
-            container
-            spacing={3}
+            item
+            md={6}
+            xs={12}
           >
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <Table>
+            <Table>
               <TableRow>
-              <TableCell style={{borderBottom: "none"}}>
-              <SportsEsportsOutlinedIcon/>
+                <TableCell style={{ borderBottom: "none" }}>
+                  <SportsEsportsOutlinedIcon />
 
-              <Typography
-                color="textPrimary"
-                gutterBottom
-                variant="h6"
-              >
-                Games Played
+                  <Typography
+                    color="textPrimary"
+                    gutterBottom
+                    variant="h6"
+                  >
+                    Games Played
               </Typography>
-              </TableCell>
+                </TableCell>
 
-              <TableCell style={{borderBottom: "none"}} align="justify">
-              <Typography
-                color="textPrimary"
-                gutterBottom
-                variant="h6"
-              >
-                {parseInt(token.won) + parseInt(token.draw) + parseInt(token.lost)}
-              </Typography>
-              </TableCell>
+                <TableCell style={{ borderBottom: "none" }} align="justify">
+                  <Typography
+                    color="textPrimary"
+                    gutterBottom
+                    variant="h6"
+                  >
+                    {parseInt(token.won) + parseInt(token.draw) + parseInt(token.lost)}
+                  </Typography>
+                </TableCell>
 
               </TableRow>
-              </Table>
+            </Table>
 
 
-            </Grid>
+          </Grid>
 
 
 
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
+          <Grid
+            item
+            md={6}
+            xs={12}
+          >
 
-              <Table>
-                <TableRow>
-                <TableCell style={{borderBottom: "none"}}>
-                  <EmojiEventsOutlinedIcon/>
+            <Table>
+              <TableRow>
+                <TableCell style={{ borderBottom: "none" }}>
+                  <EmojiEventsOutlinedIcon />
 
                   <Typography
                     color="textPrimary"
@@ -99,7 +99,7 @@ export default function AccountProfileDetails({m_token})
                     Games Won
                   </Typography>
                 </TableCell>
-                <TableCell style={{borderBottom: "none"}} align="justify">
+                <TableCell style={{ borderBottom: "none" }} align="justify">
                   <Typography
                     color="textPrimary"
                     gutterBottom
@@ -108,19 +108,19 @@ export default function AccountProfileDetails({m_token})
                     {parseInt(token.won)}
                   </Typography>
                 </TableCell>
-                </TableRow>
-              </Table>
+              </TableRow>
+            </Table>
 
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <Table>
-                <TableRow>
-                <TableCell style={{borderBottom: "none"}}>
-                <CancelOutlinedIcon/>
+          </Grid>
+          <Grid
+            item
+            md={6}
+            xs={12}
+          >
+            <Table>
+              <TableRow>
+                <TableCell style={{ borderBottom: "none" }}>
+                  <CancelOutlinedIcon />
 
                   <Typography
                     color="textPrimary"
@@ -130,7 +130,7 @@ export default function AccountProfileDetails({m_token})
                     Games Lost
                   </Typography>
                 </TableCell>
-                <TableCell style={{borderBottom: "none"}} align="justify">
+                <TableCell style={{ borderBottom: "none" }} align="justify">
                   <Typography
                     color="textPrimary"
                     gutterBottom
@@ -139,18 +139,18 @@ export default function AccountProfileDetails({m_token})
                     {parseInt(token.lost)}
                   </Typography>
                 </TableCell>
-                </TableRow>
-              </Table>
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <Table>
-                <TableRow>
-                <TableCell style={{borderBottom: "none"}}>
-                <EmojiFlagsOutlinedIcon/>
+              </TableRow>
+            </Table>
+          </Grid>
+          <Grid
+            item
+            md={6}
+            xs={12}
+          >
+            <Table>
+              <TableRow>
+                <TableCell style={{ borderBottom: "none" }}>
+                  <EmojiFlagsOutlinedIcon />
 
                   <Typography
                     color="textPrimary"
@@ -160,7 +160,7 @@ export default function AccountProfileDetails({m_token})
                     Games Tied
                   </Typography>
                 </TableCell>
-                <TableCell style={{borderBottom: "none"}} align="justify">
+                <TableCell style={{ borderBottom: "none" }} align="justify">
                   <Typography
                     color="textPrimary"
                     gutterBottom
@@ -169,12 +169,12 @@ export default function AccountProfileDetails({m_token})
                     {parseInt(token.draw)}
                   </Typography>
                 </TableCell>
-                </TableRow>
-              </Table>
-            </Grid>
-            
+              </TableRow>
+            </Table>
           </Grid>
-        </CardContent>
-      </Card>
+
+        </Grid>
+      </CardContent>
+    </Card>
   );
 }

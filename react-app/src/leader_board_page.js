@@ -1,5 +1,5 @@
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Box,
@@ -39,7 +39,7 @@ async function parsePlayers() {
       rank: count,
       name: element.email,
       games: 0,
-      wld: element.won +' / ' + element.draw +' / ' + element.lost
+      wld: element.won + ' / ' + element.draw + ' / ' + element.lost
     })
     count++;
   });
@@ -48,42 +48,42 @@ async function parsePlayers() {
 }
 
 // parsePlayers();
-export default function Leaderboard(){
+export default function Leaderboard() {
   const [players, setPlayers] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:9000/users/leaderboard', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  }).then(data => data.json())
-  .then( result => {
-    var ans = Array();
-  var count = 1;
-  result.forEach(element => {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(data => data.json())
+      .then(result => {
+        var ans = Array();
+        var count = 1;
+        result.forEach(element => {
 
-    ans.push({
-      rank: count,
-      name: element.email,
-      games: 0,
-      wld: element.won +' / ' + element.draw +' / ' + element.lost
-    })
-    count++;
-  });
-  setPlayers(ans);
-  console.log(players);
-  }
+          ans.push({
+            rank: count,
+            name: element.email,
+            games: 0,
+            wld: element.won + ' / ' + element.draw + ' / ' + element.lost
+          })
+          count++;
+        });
+        setPlayers(ans);
+        console.log(players);
+      }
 
-  )
+      )
   }, [])
-    return(
+  return (
     <Box
-    sx={{
-      backgroundColor: 'background.default',
-      minHeight: '100%',
-      py: 3
-    }}
+      sx={{
+        backgroundColor: 'background.default',
+        minHeight: '100%',
+        py: 3
+      }}
     >
       <Button size='large' href="/">
         Go Back
@@ -141,5 +141,5 @@ export default function Leaderboard(){
         </Card>
       </Container>
     </Box>
-);
+  );
 }

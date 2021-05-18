@@ -31,14 +31,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProfileEnable(classes){
+function ProfileEnable(classes) {
   const { token, setToken } = useToken();
-  
-  return(
+
+  return (
     <>
-    <Button
-      type="submit"
-        style={{width:'200px'}}
+      <Button
+        type="submit"
+        style={{ width: '200px' }}
         variant="contained"
         color="primary"
         className={classes.btn}
@@ -48,8 +48,8 @@ function ProfileEnable(classes){
       </Button>
 
       <Button
-      type="submit"
-        style={{width:'200px'}}
+        type="submit"
+        style={{ width: '200px' }}
         variant="outlined"
         color="primary"
         className={classes.btn}
@@ -58,13 +58,12 @@ function ProfileEnable(classes){
       >
         Sign Out
       </Button>
-      
+
     </>
   );
 }
 
-export default function Page({status})
-{
+export default function Page({ status }) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -102,7 +101,7 @@ export default function Page({status})
 
   console.log(status);
   var profileButton = "";
-  if (status){
+  if (status) {
     profileButton = ProfileEnable(classes)
   }
 
@@ -110,93 +109,96 @@ export default function Page({status})
   console.log(status);
 
   return (
-      <Box
-      style={{backgroundImage: `url(${background})`,
-      height:'95vh',
-      width:'97vw',
-      backgroundRepeat: 'repeat',
-      backgroundPosition: "center",
-      backgroundSize: "auto"}}
-      >
+    <Box
+      style={{
+        backgroundImage: `url(${background})`,
+        height: '95vh',
+        width: '97vw',
+        backgroundRepeat: 'repeat',
+        backgroundPosition: "center",
+        backgroundSize: "auto"
+      }}
+    >
 
       <Container
-      style={{
-      position: 'absolute', 
-      left: '50%', 
-      top: '50%',
-      transform: 'translate(-50%, -50%)'}}
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)'
+        }}
       >
         <Typography variant="h3" align="center">
-        TIC TAC TOE
+          TIC TAC TOE
         </Typography>
         <Typography variant="h3" align="center">
-        ONLINE
+          ONLINE
         </Typography>
-        
+
         <div className={classes.paper}>
-              <Button
-              style={{width:'200px'}}
-              type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.btn}
-                href="#"
+          <Button
+            style={{ width: '200px' }}
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.btn}
+            href="#"
 
-                ref={anchorRef}
-                aria-controls={open ? 'menu-list-grow' : undefined}
-                aria-haspopup="true"
-                onClick={handleToggle}
-              >
-                {"Play Offline"}
-                <ArrowDropDownIcon/>
+            ref={anchorRef}
+            aria-controls={open ? 'menu-list-grow' : undefined}
+            aria-haspopup="true"
+            onClick={handleToggle}
+          >
+            {"Play Offline"}
+            <ArrowDropDownIcon />
+          </Button>
+
+
+          <Button
+            type="submit"
+            style={{ width: '200px' }}
+            variant="contained"
+            color="primary"
+            className={classes.btn}
+            href="/game_online"
+          >
+            Play Online
               </Button>
 
-
-              <Button
-              type="submit"
-              style={{width:'200px'}}
-                variant="contained"
-                color="primary"
-                className={classes.btn}
-                href="/game_online"
-              >
-                Play Online
+          <Button
+            type="submit"
+            style={{ width: '200px' }}
+            variant="contained"
+            color="primary"
+            className={classes.btn}
+            href="/leaderboard"
+          >
+            Leaderboard
               </Button>
 
-              <Button
-              type="submit"
-              style={{width:'200px'}}
-                variant="contained"
-                color="primary"
-                className={classes.btn}
-                href="/leaderboard"
+          {profileButton}
+
+          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
               >
-                Leaderboard
-              </Button>
-
-              {profileButton}
-
-              <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                {({ TransitionProps, placement }) => (
-                  <Grow
-                    {...TransitionProps}
-                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                  >
-                    <Paper style={{width:'200px'}} alignItems='center'>
-                      <ClickAwayListener onClickAway={handleClose}>
-                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                          <Button href = "/game" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Regular</Button>
-                          <Button href="/game_rapid" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Rapid Fire</Button>
-                          <Button href="/game_bo3" style={{width: '200px', textTransform: 'none'}} onClick={handleClose}>Best of Three</Button>
-                        </MenuList>
-                      </ClickAwayListener>
-                    </Paper>
-                  </Grow>
-                )}
-              </Popper>
+                <Paper style={{ width: '200px' }} alignItems='center'>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                      <Button href="/game" style={{ width: '200px', textTransform: 'none' }} onClick={handleClose}>Regular</Button>
+                      <Button href="/game_rapid" style={{ width: '200px', textTransform: 'none' }} onClick={handleClose}>Rapid Fire</Button>
+                      <Button href="/game_bo3" style={{ width: '200px', textTransform: 'none' }} onClick={handleClose}>Best of Three</Button>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
 
         </div>
       </Container>
-      </Box>
+    </Box>
   );
 }

@@ -38,73 +38,73 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function AccountProfile({m_token}) {
+export default function AccountProfile({ m_token }) {
 
   const classes = useStyles();
 
 
   return (
-    
+
     <Card>
-    <CardContent>
+      <CardContent>
 
-    <Grid
-      container
-      spacing={3}
-      direction="column"
-      alignItems="center"
-      justify="center"
-      style={{ minHeight: '30vh' }}
-    >
-
-      <Grid item >
-        <Avatar
-            src={omi}
-            className={classes.large}
-          />
-      </Grid>
-      <Grid item >
-        <Typography
-          color="textPrimary"
-          gutterBottom
-          variant="h5"
+        <Grid
+          container
+          spacing={3}
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: '30vh' }}
         >
-          {m_token.username}
-        </Typography>
-      </Grid>         
-    </Grid>
 
-    </CardContent>
-    <Divider />
+          <Grid item >
+            <Avatar
+              src={omi}
+              className={classes.large}
+            />
+          </Grid>
+          <Grid item >
+            <Typography
+              color="textPrimary"
+              gutterBottom
+              variant="h5"
+            >
+              {m_token.username}
+            </Typography>
+          </Grid>
+        </Grid>
+
+      </CardContent>
+      <Divider />
 
       <Table>
-          <TableRow>
-            <TableCell style={{borderBottom:"none"}} align="right">
-              <EmojiEventsOutlinedIcon/>
-            </TableCell>
-            <TableCell style={{borderBottom:"none"}} align="left">
-              <Typography
-                color="textPrimary"
-                gutterBottom
-                variant="h7"
-              >
-                Rating
+        <TableRow>
+          <TableCell style={{ borderBottom: "none" }} align="right">
+            <EmojiEventsOutlinedIcon />
+          </TableCell>
+          <TableCell style={{ borderBottom: "none" }} align="left">
+            <Typography
+              color="textPrimary"
+              gutterBottom
+              variant="h7"
+            >
+              Rating
               </Typography>
-            </TableCell>
+          </TableCell>
 
-            <TableCell style={{borderBottom:"none"}} align="justify">
+          <TableCell style={{ borderBottom: "none" }} align="justify">
 
             <Typography
-                color="textPrimary"
-                gutterBottom
-                variant="h7"
-              >
-                {1500 + 100*parseInt(m_token.won)+ 25*parseInt(m_token.draw) - 100*parseInt(m_token.lost)}
-              </Typography>
+              color="textPrimary"
+              gutterBottom
+              variant="h7"
+            >
+              {1500 + 100 * parseInt(m_token.won) + 25 * parseInt(m_token.draw) - 100 * parseInt(m_token.lost)}
+            </Typography>
 
-            </TableCell>
-          </TableRow>
+          </TableCell>
+        </TableRow>
       </Table>
-  </Card>
-);
+    </Card>
+  );
 }
