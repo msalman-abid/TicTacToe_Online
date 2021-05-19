@@ -24,7 +24,7 @@ function viewProfile() {
     <Button
       type="submit"
       fullWidth
-      variant="contained"
+      variant="outlined"
       color="primary"
       href={"/profile"}
     >
@@ -244,17 +244,6 @@ class Board extends React.Component {
             </div>
           </div>
         </Grid>
-        {/* 
-            <Grid item>
-            <Button variant='outlined' size='large'  
-            onClick={() => this.setState({squares: Array(9).fill(null),
-              xIsNext: true,
-              winner: false})}
-            >
-              Reset Game
-            </Button>
-            </Grid> */}
-
       </Grid>
     );
   }

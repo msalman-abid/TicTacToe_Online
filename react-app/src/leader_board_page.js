@@ -85,28 +85,28 @@ export default function Leaderboard() {
         py: 3
       }}
     >
-      <Button size='large' href="/">
+      <Button variant='outlined' size='large' href="/">
         Go Back
       </Button>
       <Container maxWidth="lg">
         <Card>
-          <CardHeader title="Leader Board" />
+          <CardHeader title="Leader Board" align='center'/>
           <Divider />
           <PerfectScrollbar>
-            <Box sx={{ minWidth: 800 }}>
+            <Box sx={{ minWidth: 600 }}>
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>
+                    <TableCell align='center'>
                       Rank
                     </TableCell>
-                    <TableCell>
+                    <TableCell align='center'>
                       Player Name
                     </TableCell>
-                    <TableCell>
+                    <TableCell align='center'>
                       Games Played
                     </TableCell>
-                    <TableCell>
+                    <TableCell align='center'>
                       Won / Lost / Draw
                     </TableCell>
                   </TableRow>
@@ -116,16 +116,16 @@ export default function Leaderboard() {
                     <TableRow
                       hover
                     >
-                      <TableCell>
+                      <TableCell align='center'>
                         {player.rank}
                       </TableCell>
-                      <TableCell>
+                      <TableCell align='center'>
                         {player.name}
                       </TableCell>
-                      <TableCell>
+                      <TableCell align='center'>
                         {player.games}
                       </TableCell>
-                      <TableCell>
+                      <TableCell align='center'>
                         <Chip
                           color="primary"
                           label={player.wld}

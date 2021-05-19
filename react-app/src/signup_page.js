@@ -116,6 +116,7 @@ export default function SignUp({ setToken }) {
               color="primary"
               className={classes.submit}
               disabled={!validateForm()}
+              href='/'
             >
               Sign Up
           </Button >

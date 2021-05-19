@@ -124,6 +124,7 @@ export default function LogIn({ setToken }) {
               color="primary"
               className={classes.submit}
               disabled={!validateForm()}
+              href='/'
             >
               Log In
           </Button>
