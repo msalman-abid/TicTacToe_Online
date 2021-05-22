@@ -9,3 +9,5 @@ Run the following commands in the root directory: <br>
 
 After executing the first two for both the front-end and back-end, run 
 ```npm start```. Both client and server should be running for the app to function.
+
+Website can be accessed here: http://23.97.134.126:3000/
