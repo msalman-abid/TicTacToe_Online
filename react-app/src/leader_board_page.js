@@ -76,7 +76,7 @@ export default function Leaderboard() {
       }
 
       )
-  }, [])
+  }, [players])
   return (
     <Box
       sx={{
