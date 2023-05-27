@@ -4,6 +4,8 @@ import Confetti from 'react-confetti';
 import React from 'react'
 
 
+const { REACT_APP_BACKEND_URL } = process.env;
+
 function Square(props) {
   var color1= "orange";
   if (props.value === 'X')
@@ -266,7 +268,7 @@ class GameOffline extends React.Component {
 }
 
 callAPI() {
-    fetch("http://localhost:9000/game/clear")
+    fetch(REACT_APP_BACKEND_URL + "/game/clear")
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: "Board Reset!" }));
 }
@@ -341,7 +343,7 @@ function checkDraw(squares) {
 function clearBoard()
 {
   let temp;
-  fetch('http://localhost:9000/game');
+  fetch(REACT_APP_BACKEND_URL + '/game');
 }
 
 export default GameOffline;

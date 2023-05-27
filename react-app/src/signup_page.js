@@ -30,13 +30,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const { REACT_APP_BACKEND_URL } = process.env;
+
 export default function SignUp({ setToken }) {
-  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   async function signupUser(credentials) {
-    return fetch('http://localhost:9000/login/signup', {
+    return fetch(REACT_APP_BACKEND_URL + '/login/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -116,7 +117,6 @@ export default function SignUp({ setToken }) {
               color="primary"
               className={classes.submit}
               disabled={!validateForm()}
-              href='/'
             >
               Sign Up
           </Button >

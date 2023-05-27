@@ -12,7 +12,7 @@ import {
   Box,
   makeStyles
 } from '@material-ui/core';
-
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,15 +39,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 async function loginUser(credentials) {
-  return fetch('http://localhost:9000/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      credentials
-    })
-  }).then(data => data.json())
+  const { REACT_APP_BACKEND_URL } = process.env;
+  try {
+  const result = await axios.post(REACT_APP_BACKEND_URL + '/login', { credentials })
+  console.log(result.data);
+  return result.data;
+
+  } catch (e) {
+    console.error("ERROR", e);
+    return { token : null};
+  }
 }
 
 
@@ -86,7 +87,6 @@ export default function LogIn({ setToken }) {
         <div className={classes.paper}>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
-              color="white"
               variant="outlined"
               margin="normal"
               required
@@ -124,7 +124,6 @@ export default function LogIn({ setToken }) {
               color="primary"
               className={classes.submit}
               disabled={!validateForm()}
-              href='/'
             >
               Log In
           </Button>
