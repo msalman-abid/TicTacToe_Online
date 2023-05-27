@@ -99,14 +99,14 @@ export default function Page({ status }) {
     prevOpen.current = open;
   }, [open]);
 
-  console.log(status);
+  // console.log(status);
   var profileButton = "";
   if (status) {
     profileButton = ProfileEnable(classes)
   }
 
-  console.log("Status");
-  console.log(status);
+  // console.log("Status");
+  // console.log(status);
 
   return (
     <Box

@@ -18,8 +18,10 @@ import EmojiFlagsOutlinedIcon from '@material-ui/icons/EmojiFlagsOutlined';
 export default function AccountProfileDetails({ m_token }) {
   const [token, setToken] = useState({});
 
+  const { REACT_APP_BACKEND_URL } = process.env;
+
   useEffect(() => {
-    fetch('http://localhost:9000/users/profile', {
+    fetch(REACT_APP_BACKEND_URL + '/users/profile', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -30,7 +32,7 @@ export default function AccountProfileDetails({ m_token }) {
         setToken(data.token);
       }
       )
-  })
+  }, [])
 
   return (
     <Card>

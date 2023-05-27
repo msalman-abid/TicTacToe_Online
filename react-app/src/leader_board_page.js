@@ -14,12 +14,11 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  TableSortLabel,
-  Tooltip
 } from '@material-ui/core';
 
 async function fetchPlayers() {
-  return fetch('http://localhost:9000/users/leaderboard', {
+  const { REACT_APP_BACKEND_URL } = process.env;
+  return fetch(REACT_APP_BACKEND_URL + '/users/leaderboard', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -51,8 +50,10 @@ async function parsePlayers() {
 export default function Leaderboard() {
   const [players, setPlayers] = useState([])
 
+  const { REACT_APP_BACKEND_URL } = process.env;
+
   useEffect(() => {
-    fetch('http://localhost:9000/users/leaderboard', {
+    fetch(REACT_APP_BACKEND_URL + '/users/leaderboard', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -76,7 +77,8 @@ export default function Leaderboard() {
       }
 
       )
-  }, [players])
+  }, [])
+
   return (
     <Box
       sx={{

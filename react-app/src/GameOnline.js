@@ -89,7 +89,7 @@ class Board extends React.Component {
 
 
 
-    fetch('http://localhost:9000/game/update', {
+    fetch(REACT_APP_BACKEND_URL + '/game/update', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ class Board extends React.Component {
     else if (result === "lost")
       m_token.lost++;
 
-    console.log(m_token);
+    // console.log(m_token);
     this.props.setToken(m_token)
   }
 
@@ -119,7 +119,7 @@ class Board extends React.Component {
     socket.on("game.begin", (data) => {
 
       socket.emit("send.token", { token });
-      console.log(token);
+      // console.log(token);
       this.setState({
         symbol: data.symbol, // The server is assigning the symbol
         myTurn: data.symbol === "X" // 'X' starts first
@@ -249,13 +249,15 @@ class Board extends React.Component {
   }
 }
 
+const { REACT_APP_BACKEND_URL } = process.env;
+
 class GameOnline extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       apiResponse: "",
       gameWinner: false,
-      socket: socketClient("http://localhost:9000"),
+      socket: socketClient(REACT_APP_BACKEND_URL),
       token: this.props.m_token,
       opp_token: {
         username: "Waiting for opponent...",
@@ -267,7 +269,6 @@ class GameOnline extends React.Component {
 
   }
 
-
   renderConfetti() {
     if (this.state.gameWinner) {
       return (<Confetti />)
@@ -277,6 +278,8 @@ class GameOnline extends React.Component {
   componentDidMount() {
     const socket = this.state.socket;
     const token = this.state.token;
+
+    console.log("mount token: " + token);
 
     socket.on("rcv.token", (data) => {
       this.setState({
